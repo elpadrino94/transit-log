@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block content %}
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <span class="hero-badge">BLOG LOGISTIQUE</span>
+
+          <h1>
+            Transport, Transit & <br />
+            Logistique Internationale
+          </h1>
+
+          <p>Actualités, conseils et bonnes pratiques pour optimiser vos opérations à l’international et développer une chaîne logistique performante.</p>
+
+          <div class="hero-btns">
+            <a href="#" class="btn-main">
+              <i class="bi bi-book"></i>
+              Lire les articles
+            </a>
+
+            <a href="#" class="btn-outline-custom">
+              <i class="bi bi-grid"></i>
+              Explorer les catégories
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <h2 class="section-title">Catégories populaires</h2>
+
+        <a href="#" class="section-link">Voir toutes les catégories →</a>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="bi bi-truck"></i>
+            </div>
+
+            <h5>Transport Routier</h5>
+            <p>24 articles</p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="bi bi-water"></i>
+            </div>
+
+            <h5>Transport Maritime</h5>
+            <p>36 articles</p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="bi bi-airplane"></i>
+            </div>
+
+            <h5>Transport Aérien</h5>
+            <p>18 articles</p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="bi bi-file-earmark-check"></i>
+            </div>
+
+            <h5>Transit Douanier</h5>
+            <p>29 articles</p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="bi bi-box-seam"></i>
+            </div>
+
+            <h5>Logistique</h5>
+            <p>22 articles</p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="bi bi-globe"></i>
+            </div>
+
+            <h5>Import / Export</h5>
+            <p>31 articles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="row">
+        <!-- LEFT -->
+        <div class="col-lg-8">
+          <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+            <h2 class="section-title">Articles à la une</h2>
+
+            <a href="#" class="section-link">Voir tous les articles →</a>
+          </div>
+
+          <div class="row g-4">
+            <!-- CARD -->
+            {% for post in posts %}
+              <div class="col-lg-4 col-md-6 col-12">
+                <div class="blog-card">
+                  <div class="blog-img">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+                    <span class="badge-category">{{ post.category }}</span>
+                  </div>
+
+                  <div class="blog-content">
+                    <h4>{{ post.title }}</h4>
+
+                    <div class="blog-meta">
+                      <span>
+                        <i class="bi bi-clock"></i>
+                        5 min
+                      </span>
+
+                      <span>
+                        <i class="bi bi-calendar"></i>
+                        {{ post.published_at }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="col-lg-4">
+          <div class="sidebar">
+            <h3 class="sidebar-title">Derniers articles</h3>
+
+            <div class="mini-post">
+              <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=600&auto=format&fit=crop" alt="" />
+
+              <div>
+                <h6>Le rôle du transitaire dans la chaîne logistique</h6>
+
+                <small>15 avril 2024 • 6 min</small>
+              </div>
+            </div>
+
+            <div class="mini-post">
+              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=600&auto=format&fit=crop" alt="" />
+
+              <div>
+                <h6>Transport aérien : avantages et contraintes</h6>
+
+                <small>10 avril 2024 • 5 min</small>
+              </div>
+            </div>
+
+            <div class="mini-post">
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600&auto=format&fit=crop" alt="" />
+
+              <div>
+                <h6>Logistique contractuelle : pourquoi les entreprises y ont recours ?</h6>
+
+                <small>5 avril 2024 • 4 min</small>
+              </div>
+            </div>
+
+            <div class="mini-post">
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop" alt="" />
+
+              <div>
+                <h6>Douane : les erreurs à éviter absolument</h6>
+
+                <small>2 avril 2024 • 5 min</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="newsletter">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-5">
+            <h3>Restez informé des dernières actualités</h3>
+
+            <p class="mb-0">Abonnez-vous à notre newsletter pour recevoir nos derniers articles et conseils.</p>
+          </div>
+
+          <div class="col-lg-7">
+            <form>
+              <div class="row g-3">
+                <div class="col-md-8">
+                  <input type="email" class="form-control" placeholder="Votre adresse email" />
+                </div>
+
+                <div class="col-md-4">
+                  <button class="btn w-100">S'abonner</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
