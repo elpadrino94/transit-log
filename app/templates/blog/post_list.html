@@ -62,7 +62,7 @@
               </div>
 
               <div class="blog-content">
-                <h3>{{ post.title }}</h3>
+                <h3><a href="{% url 'post-detail' post.slug %}" class="post-title-link">{{ post.title }}</a></h3>
 
                 <p>{{ post.content|truncatechars:80 }}</p>
 

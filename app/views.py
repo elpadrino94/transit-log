@@ -13,7 +13,7 @@ class HomeView(ListView):
     def get_queryset(self):
         return Post.objects.filter(
             status='published'
-            ).select_related('category', 'author').order_by('-published_at')
+            ).select_related('category', 'author')
 
     def get_context_data(self, **kargs):
         context = super().get_context_data(**kargs)
@@ -39,3 +39,8 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'post'
+
+    def get_context_data(self, **kargs):
+        context = super().get_context_data(**kargs)
+        context['recent_posts'] = Post.objects.filter(status='published').order_by('-published_at')[:3]
+        return context

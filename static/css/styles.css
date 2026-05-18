@@ -227,7 +227,7 @@ BLOG CARD
     height: 100%;
 }
 
-.blog-card:hover {
+.blog-card h .blog-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
 }
@@ -264,11 +264,16 @@ BLOG CARD
 }
 
 .blog-content h4 {
-    font-size: 1.2rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.2;
     font-weight: 800;
     color: var(--primary);
     margin-bottom: 18px;
+}
+
+.blog-content h4 a {
+    text-decoration: none;
+    color: var(--primary);
 }
 
 .blog-meta {
@@ -318,7 +323,7 @@ SIDEBAR
     border-radius: 14px;
 }
 
-.mini-post h6 {
+.mini-post a {
     font-size: 1rem;
     line-height: 1.5;
     color: var(--primary);

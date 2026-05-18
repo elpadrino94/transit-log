@@ -137,7 +137,7 @@
                   </div>
 
                   <div class="blog-content">
-                    <h4>{{ post.title }}</h4>
+                    <h4><a href="{% url 'post-detail' post.slug %}" class="post-title-link">{{ post.title }}</a></h4>
 
                     <div class="blog-meta">
                       <span>
@@ -167,9 +167,9 @@
                 <img src="{{ post.image.url }}" alt="{{ post.title }}" />
 
                 <div>
-                  <h6>{{ post.title }}</h6>
+                  <a href="{% url 'post-detail' post.slug %}" class="post-title-link">{{ post.title }}</a><br />
 
-                  <small>{{ post.published_at }} • 6 min</small>
+                  <small>{{ post.published_at }}</small>
                 </div>
               </div>
             {% endfor %}

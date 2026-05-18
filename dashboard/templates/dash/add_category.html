@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- FORM SECTION -->
+  <section class="form-section">
+    <div class="container">
+      <div class="category-card">
+        <div class="mb-5">
+          <h2 class="section-title">Informations de la catégorie</h2>
+
+          <p class="section-subtitle">Créez une nouvelle catégorie pour structurer vos contenus.</p>
+        </div>
+
+        <form>
+          <div class="row g-4">
+            <!-- NAME -->
+            <div class="col-12">
+              <label class="form-label">Nom de la catégorie</label>
+
+              <input type="text" class="form-control" placeholder="Ex: Transport Maritime" />
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="col-12">
+              <label class="form-label">Description</label>
+
+              <textarea class="form-control" placeholder="Décrivez cette catégorie..."></textarea>
+            </div>
+          </div>
+
+          <!-- SEO -->
+          <div class="seo-box">
+            <h4>Optimisation SEO</h4>
+
+            <p>Configurez les métadonnées SEO pour améliorer la visibilité de la catégorie.</p>
+
+            <div class="row g-4">
+              <!-- META TITLE -->
+              <div class="col-12">
+                <label class="form-label">Meta Title</label>
+
+                <input type="text" class="form-control" placeholder="Titre SEO de la catégorie" />
+
+                <div class="form-note">Recommandé : 50 à 60 caractères.</div>
+              </div>
+
+              <!-- META DESCRIPTION -->
+              <div class="col-12">
+                <label class="form-label">Meta Description</label>
+
+                <textarea class="form-control" placeholder="Description SEO optimisée..."></textarea>
+
+                <div class="form-note">Recommandé : 140 à 160 caractères.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PREVIEW -->
+          <div class="preview-box">
+            <h5>APERÇU DE LA CATÉGORIE</h5>
+
+            <div class="preview-category">
+              <div class="preview-icon">
+                <i class="bi bi-truck"></i>
+              </div>
+
+              <h3>Transport Maritime</h3>
+
+              <p>Retrouvez tous les articles liés au transport maritime, au fret international, aux procédures portuaires et aux stratégies logistiques maritimes.</p>
+            </div>
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="d-flex flex-wrap gap-3 mt-5">
+            <button type="submit" class="btn-primary-custom">
+              <i class="bi bi-check-circle"></i>
+              Enregistrer la catégorie
+            </button>
+
+            <button type="button" class="btn-outline-custom">
+              <i class="bi bi-arrow-left"></i>
+              Retour
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock %}

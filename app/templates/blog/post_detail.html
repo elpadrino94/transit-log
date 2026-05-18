@@ -1,5 +1,281 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Post detail
+  Post Detail
+{% endblock %}
+
+{% block content %}
+  <div class="main-wrapper">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <span class="hero-badge">{{ post.category }}</span>
+
+        <h1>{{ post.title }}</h1>
+
+        <div class="hero-meta">
+          <span>
+            <i class="bi bi-calendar"></i>
+            {{ post.published_at }}
+          </span>
+
+          <span>
+            <i class="bi bi-clock"></i>
+            7 min de lecture
+          </span>
+
+          <span>
+            <i class="bi bi-person"></i>
+            {{ post.author.full_name }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLE -->
+    <section class="pb-5">
+      <div class="container">
+        <div class="article-wrapper">
+          <div class="row g-4">
+            <!-- MAIN ARTICLE -->
+            <div class="col-lg-8">
+              <div class="article-card">
+                <div class="article-cover">
+                  <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+                </div>
+
+                <div class="article-content">
+                  <p>Dans un environnement économique de plus en plus compétitif, les entreprises cherchent constamment à optimiser leurs coûts logistiques tout en maintenant un haut niveau de qualité de service. Une stratégie logistique efficace peut améliorer la rentabilité, accélérer les livraisons et renforcer la satisfaction client.</p>
+
+                  <h2>Pourquoi optimiser la chaîne logistique ?</h2>
+
+                  <p>La logistique représente une part importante des dépenses opérationnelles d’une entreprise. Entre le transport, le stockage, les formalités douanières et la gestion des flux, les coûts peuvent rapidement augmenter.</p>
+
+                  <p>Optimiser la chaîne logistique permet de réduire les dépenses inutiles, améliorer la productivité des équipes et garantir une meilleure visibilité sur les opérations.</p>
+
+                  <div class="quote-box">
+                    <p>“Une logistique performante n’est plus seulement un avantage, c’est aujourd’hui un levier stratégique de croissance.”</p>
+                  </div>
+
+                  <h2>Les meilleures stratégies de réduction des coûts</h2>
+
+                  <h3>1. Automatiser les processus</h3>
+
+                  <p>L’automatisation permet de réduire les erreurs humaines, accélérer les traitements administratifs et améliorer la gestion des stocks. Les entreprises modernes utilisent désormais des logiciels ERP et des plateformes de suivi logistique en temps réel.</p>
+
+                  <h3>2. Optimiser les itinéraires de transport</h3>
+
+                  <p>Une meilleure planification des itinéraires permet de réduire la consommation de carburant et les délais de livraison. Les outils d’analyse prédictive facilitent désormais l’optimisation des trajets.</p>
+
+                  <ul>
+                    <li>Réduction des coûts de carburant</li>
+
+                    <li>Diminution des retards de livraison</li>
+
+                    <li>Amélioration du taux de satisfaction client</li>
+
+                    <li>Optimisation de la flotte de véhicules</li>
+                  </ul>
+
+                  <h3>3. Centraliser les opérations logistiques</h3>
+
+                  <p>Centraliser certaines opérations permet d’améliorer la coordination entre les équipes, réduire les doublons et simplifier la gestion des flux internationaux.</p>
+
+                  <h2>L’impact du digital sur la logistique</h2>
+
+                  <p>Les nouvelles technologies transforment profondément le secteur du transport et de la logistique. Les outils numériques offrent une meilleure visibilité sur les opérations, facilitent la traçabilité des marchandises et améliorent les prises de décision.</p>
+
+                  <p>Les entreprises qui investissent dans la transformation digitale bénéficient généralement d’une meilleure efficacité opérationnelle et d’une réduction significative des coûts.</p>
+
+                  <h2>Conclusion</h2>
+
+                  <p>Réduire les coûts logistiques sans sacrifier la qualité nécessite une approche stratégique et structurée. L’automatisation, la digitalisation et l’optimisation des processus sont aujourd’hui des leviers incontournables pour rester compétitif sur le marché international.</p>
+                </div>
+
+                <!-- SHARE -->
+                <div class="share-box">
+                  <h4 class="share-title">Partager cet article</h4>
+
+                  <div class="share-links">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+
+                    <a href="#"><i class="bi bi-whatsapp"></i></a>
+
+                    <a href="#"><i class="bi bi-envelope"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="col-lg-4">
+              <!-- CATEGORIES -->
+              <!--           <div class="sidebar-card">
+                <h4 class="sidebar-title">Catégories</h4>
+
+                <div class="category-item">
+                  Transport Routier
+                  <span>24</span>
+                </div>
+
+                <div class="category-item">
+                  Transport Maritime
+                  <span>36</span>
+                </div>
+
+                <div class="category-item">
+                  Transit Douanier
+                  <span>29</span>
+                </div>
+
+                <div class="category-item">
+                  Logistique
+                  <span>22</span>
+                </div>
+
+                <div class="category-item">
+                  Import / Export
+                  <span>31</span>
+                </div>
+              </div>           -->
+
+              <!-- RECENT POSTS -->
+              <div class="sidebar-card">
+                <h4 class="sidebar-title">Articles récents</h4>
+
+                {% for post in recent_posts %}
+                  <div class="recent-post">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+
+                    <div>
+                      <h6><a href="{% url 'post-detail' post.slug %}" class="post-title-link">{{ post.title }}</a></h6>
+
+                      <small>{{ post.published_at }}</small>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- RELATED POSTS -->
+          <div class="related-section">
+            <h2 class="section-title">Articles similaires</h2>
+
+            <div class="row g-4">
+              <!-- CARD -->
+              <div class="col-lg-4 col-md-6 col-12">
+                <div class="related-card">
+                  <div class="related-image">
+                    <img src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?q=80&w=1200&auto=format&fit=crop" alt="" />
+
+                    <span class="related-badge">TRANSIT</span>
+                  </div>
+
+                  <div class="related-content">
+                    <h4>Les documents nécessaires pour l’import-export</h4>
+
+                    <div class="related-meta">
+                      <span>
+                        <i class="bi bi-clock"></i>
+                        7 min
+                      </span>
+
+                      <span>
+                        <i class="bi bi-calendar"></i>
+                        10 Mai 2026
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD -->
+              <div class="col-lg-4 col-md-6 col-12">
+                <div class="related-card">
+                  <div class="related-image">
+                    <img src="https://images.unsplash.com/photo-1565891741441-64926e441838?q=80&w=1200&auto=format&fit=crop" alt="" />
+
+                    <span class="related-badge">MARITIME</span>
+                  </div>
+
+                  <div class="related-content">
+                    <h4>Fret maritime : enjeux et perspectives</h4>
+
+                    <div class="related-meta">
+                      <span>
+                        <i class="bi bi-clock"></i>
+                        5 min
+                      </span>
+
+                      <span>
+                        <i class="bi bi-calendar"></i>
+                        08 Mai 2026
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD -->
+              <div class="col-lg-4 col-md-6 col-12">
+                <div class="related-card">
+                  <div class="related-image">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop" alt="" />
+
+                    <span class="related-badge">DOUANE</span>
+                  </div>
+
+                  <div class="related-content">
+                    <h4>Les erreurs douanières les plus fréquentes</h4>
+
+                    <div class="related-meta">
+                      <span>
+                        <i class="bi bi-clock"></i>
+                        6 min
+                      </span>
+
+                      <span>
+                        <i class="bi bi-calendar"></i>
+                        05 Mai 2026
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEWSLETTER -->
+          <div class="newsletter">
+            <div class="row align-items-center g-4">
+              <div class="col-lg-5">
+                <h3>Recevez nos prochains articles</h3>
+
+                <p class="mb-0">Conseils logistiques, transport international, transit douanier et stratégies business.</p>
+              </div>
+
+              <div class="col-lg-7">
+                <form>
+                  <div class="row g-3">
+                    <div class="col-md-8">
+                      <input type="email" class="form-control" placeholder="Votre adresse email" />
+                    </div>
+
+                    <div class="col-md-4">
+                      <button class="btn w-100">S'abonner</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 {% endblock %}

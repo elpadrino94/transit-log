@@ -13,7 +13,7 @@ from .forms import AddPostForm, CategoryAddForm
 class AddCategoryView(CreateView):
     model = Category
     form_class = CategoryAddForm
-    template_name = 'dashboard/add_category.html'
+    template_name = 'dash/add_category.html'
 
 
 # ==============================
@@ -22,4 +22,4 @@ class AddCategoryView(CreateView):
 class AddPostView(CreateView):
     model = Post
     form_class = AddPostForm
-    template_name = 'dashboard/add_post.html'
+    template_name = 'dash/add_post.html'
