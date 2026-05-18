@@ -1,6 +1,6 @@
 from django.shortcuts import render
-
-from django.views.generic import TemplateView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView, ListView
 from app.models import Post
 
 # Create your views here.
@@ -31,3 +31,11 @@ class PostListView(ListView):
         return Post.objects.filter(
             status='published'
             ).select_related('category', 'author').order_by('-published_at')
+
+#==========================
+# POST DETAIL
+#==========================
+class PostDetailView(LoginRequiredMixin, DetailView):
+    model = Post
+    template_name = 'blog/post_detail.html'
+    context_object_name = 'post'
