@@ -1,0 +1,422 @@
+{% extends 'dash_base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+  <!-- HEADER -->
+  <div class="dashboard-header">
+    <div class="row align-items-center">
+      <!-- LEFT -->
+      <div class="col-lg-6">
+        <h1 class="dashboard-title">Tableau de bord</h1>
+
+        <p class="dashboard-subtitle">Bienvenue sur votre espace d'administration.</p>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="col-lg-6">
+        <div class="top-actions">
+          <!-- SEARCH -->
+          <div class="search-box d-flex align-items-center gap-3">
+            <i class="bi bi-search text-secondary"></i>
+
+            <input type="text" placeholder="Rechercher..." />
+          </div>
+
+          <!-- NOTIFICATION -->
+          <div class="notification-btn">
+            <i class="bi bi-bell fs-5"></i>
+
+            <div class="notification-badge">3</div>
+          </div>
+
+          <!-- USER -->
+          <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="" class="rounded-circle" width="56" height="56" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD CONTENT -->
+  <div class="dashboard-content">
+    <!-- | STATS | -->
+    <div class="row g-4 mb-4">
+      <!-- CARD -->
+      <div class="col-md-6 col-xl-3">
+        <div class="stat-card">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="d-flex gap-4">
+              <div class="stat-icon stat-blue">
+                <i class="bi bi-file-earmark-text"></i>
+              </div>
+
+              <div>
+                <h2 class="fw-bold mb-1">128</h2>
+
+                <p class="mb-1 fw-semibold">Articles publiés</p>
+
+                <small class="text-secondary">Depuis la semaine dernière</small>
+              </div>
+            </div>
+
+            <span class="text-success fw-bold">↑ 12%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="col-md-6 col-xl-3">
+        <div class="stat-card">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="d-flex gap-4">
+              <div class="stat-icon stat-green">
+                <i class="bi bi-chat-dots"></i>
+              </div>
+
+              <div>
+                <h2 class="fw-bold mb-1">342</h2>
+
+                <p class="mb-1 fw-semibold">Commentaires</p>
+
+                <small class="text-secondary">Depuis la semaine dernière</small>
+              </div>
+            </div>
+
+            <span class="text-success fw-bold">↑ 8%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="col-md-6 col-xl-3">
+        <div class="stat-card">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="d-flex gap-4">
+              <div class="stat-icon stat-purple">
+                <i class="bi bi-eye"></i>
+              </div>
+
+              <div>
+                <h2 class="fw-bold mb-1">24.5K</h2>
+
+                <p class="mb-1 fw-semibold">Vues totales</p>
+
+                <small class="text-secondary">Depuis la semaine dernière</small>
+              </div>
+            </div>
+
+            <span class="text-success fw-bold">↑ 18%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="col-md-6 col-xl-3">
+        <div class="stat-card">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="d-flex gap-4">
+              <div class="stat-icon stat-orange">
+                <i class="bi bi-people"></i>
+              </div>
+
+              <div>
+                <h2 class="fw-bold mb-1">1.2K</h2>
+
+                <p class="mb-1 fw-semibold">Abonnés</p>
+
+                <small class="text-secondary">Depuis la semaine dernière</small>
+              </div>
+            </div>
+
+            <span class="text-success fw-bold">↑ 15%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- | SECOND ROW | -->
+    <div class="row g-4 mb-4">
+      <!-- CATEGORY LIST -->
+      <div class="col-xl-7">
+        <div class="content-card">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="section-title">Liste des catégories</h3>
+
+            <button class="btn btn-light rounded-4">Toutes</button>
+          </div>
+
+          <!-- CATEGORY -->
+          <div class="category-item">
+            <div class="category-left">
+              <div class="category-icon">
+                <i class="bi bi-truck"></i>
+              </div>
+
+              <div>
+                <h5 class="fw-bold mb-1">Transport Routier</h5>
+
+                <small class="text-secondary">24 articles publiés</small>
+              </div>
+            </div>
+
+            <span class="badge bg-primary rounded-pill px-3 py-2">Active</span>
+          </div>
+
+          <!-- CATEGORY -->
+          <div class="category-item">
+            <div class="category-left">
+              <div class="category-icon">
+                <i class="bi bi-airplane"></i>
+              </div>
+
+              <div>
+                <h5 class="fw-bold mb-1">Transport Aérien</h5>
+
+                <small class="text-secondary">18 articles publiés</small>
+              </div>
+            </div>
+
+            <span class="badge bg-success rounded-pill px-3 py-2">Active</span>
+          </div>
+
+          <!-- CATEGORY -->
+          <div class="category-item">
+            <div class="category-left">
+              <div class="category-icon">
+                <i class="bi bi-ship"></i>
+              </div>
+
+              <div>
+                <h5 class="fw-bold mb-1">Transport Maritime</h5>
+
+                <small class="text-secondary">36 articles publiés</small>
+              </div>
+            </div>
+
+            <span class="badge bg-primary rounded-pill px-3 py-2">Active</span>
+          </div>
+
+          <!-- CATEGORY -->
+          <div class="category-item">
+            <div class="category-left">
+              <div class="category-icon">
+                <i class="bi bi-box-seam"></i>
+              </div>
+
+              <div>
+                <h5 class="fw-bold mb-1">Logistique</h5>
+
+                <small class="text-secondary">22 articles publiés</small>
+              </div>
+            </div>
+
+            <span class="badge bg-warning text-dark rounded-pill px-3 py-2">Brouillon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUICK ACTION -->
+      <div class="col-xl-2">
+        <div class="content-card">
+          <h3 class="section-title mb-4">Actions rapides</h3>
+
+          <button class="quick-btn primary">+ Nouvel article</button>
+
+          <button class="quick-btn">Catégorie</button>
+
+          <button class="quick-btn">Média</button>
+
+          <button class="quick-btn">Page</button>
+
+          <button class="quick-btn">Newsletter</button>
+        </div>
+      </div>
+
+      <!-- COMMENTS -->
+      <div class="col-xl-3">
+        <div class="content-card">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="section-title">Commentaires</h3>
+
+            <a href="#">Voir tout</a>
+          </div>
+
+          <!-- COMMENT -->
+          <div class="comment-item">
+            <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="" />
+
+            <div>
+              <h6 class="fw-bold mb-1">Jean Dupont</h6>
+
+              <p class="text-secondary mb-1">Très bon article sur le transport maritime !</p>
+
+              <small class="text-secondary">Il y a 2 heures</small>
+            </div>
+          </div>
+
+          <!-- COMMENT -->
+          <div class="comment-item">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="" />
+
+            <div>
+              <h6 class="fw-bold mb-1">Marie Laurent</h6>
+
+              <p class="text-secondary mb-1">Merci pour ces informations utiles 👍</p>
+
+              <small class="text-secondary">Il y a 5 heures</small>
+            </div>
+          </div>
+
+          <!-- COMMENT -->
+          <div class="comment-item">
+            <img src="https://randomuser.me/api/portraits/women/20.jpg" alt="" />
+
+            <div>
+              <h6 class="fw-bold mb-1">Sophie Martin</h6>
+
+              <p class="text-secondary mb-1">Article intéressant et bien détaillé.</p>
+
+              <small class="text-secondary">Il y a 1 jour</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--    
+           | ARTICLES TABLE 
+           |   -->
+
+    <div class="row g-4">
+      <div class="col-xl-8">
+        <div class="content-card">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="section-title">Articles les plus populaires</h3>
+
+            <a href="#">Voir tout</a>
+          </div>
+
+          <!-- ARTICLE -->
+          <div class="article-item">
+            <div class="d-flex align-items-center gap-4">
+              <span class="fw-bold fs-5">1</span>
+
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600" alt="" />
+
+              <div>
+                <h6 class="fw-bold">Comment réduire les coûts de transport sans impacter la qualité ?</h6>
+
+                <small class="text-secondary">Publié le 12 mai 2024</small>
+              </div>
+            </div>
+
+            <div class="text-end">
+              <h6 class="fw-bold">3.2K</h6>
+
+              <small class="text-secondary">Vues</small>
+            </div>
+          </div>
+
+          <!-- ARTICLE -->
+          <div class="article-item">
+            <div class="d-flex align-items-center gap-4">
+              <span class="fw-bold fs-5">2</span>
+
+              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=600" alt="" />
+
+              <div>
+                <h6 class="fw-bold">Documents nécessaires pour l'import-export</h6>
+
+                <small class="text-secondary">Publié le 10 mai 2024</small>
+              </div>
+            </div>
+
+            <div class="text-end">
+              <h6 class="fw-bold">2.7K</h6>
+
+              <small class="text-secondary">Vues</small>
+            </div>
+          </div>
+
+          <!-- ARTICLE -->
+          <div class="article-item">
+            <div class="d-flex align-items-center gap-4">
+              <span class="fw-bold fs-5">3</span>
+
+              <img src="https://images.unsplash.com/photo-1565891741441-64926e441838?q=80&w=600" alt="" />
+
+              <div>
+                <h6 class="fw-bold">Fret maritime : tendances et défis en 2024</h6>
+
+                <small class="text-secondary">Publié le 8 mai 2024</small>
+              </div>
+            </div>
+
+            <div class="text-end">
+              <h6 class="fw-bold">2.1K</h6>
+
+              <small class="text-secondary">Vues</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOURCE CARD -->
+      <div class="col-xl-4">
+        <div class="content-card h-100">
+          <h3 class="section-title mb-4">Sources de trafic</h3>
+
+          <!-- PROGRESS -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Recherche organique</span>
+              <span>45%</span>
+            </div>
+
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar" style="width:45%"></div>
+            </div>
+          </div>
+
+          <!-- PROGRESS -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Réseaux sociaux</span>
+              <span>25%</span>
+            </div>
+
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar bg-success" style="width:25%"></div>
+            </div>
+          </div>
+
+          <!-- PROGRESS -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Accès direct</span>
+              <span>15%</span>
+            </div>
+
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar bg-warning" style="width:15%"></div>
+            </div>
+          </div>
+
+          <!-- PROGRESS -->
+          <div>
+            <div class="d-flex justify-content-between mb-2">
+              <span>Sites référents</span>
+              <span>10%</span>
+            </div>
+
+            <div class="progress" style="height: 10px;">
+              <div class="progress-bar bg-danger" style="width:10%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

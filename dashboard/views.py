@@ -1,10 +1,13 @@
 from django.shortcuts import render
 
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from app.models import Category, Post
 from .forms import AddPostForm, CategoryAddForm
 
 # Create your views here.
+
+class DashboardView(TemplateView):
+    template_name = 'dash/dashboard.html'
 
 
 # ============================

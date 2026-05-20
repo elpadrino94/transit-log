@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard - TransitLog</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- costom css -->
+    <link rel="stylesheet" href="{% static 'css/dash/dashboard.css' %}" />
+  </head>
+
+  <body>
+    <div class="dashboard-wrapper">
+      <!-- | SIDEBAR | -->
+      <aside class="sidebar">
+        <!-- LOGO -->
+        <div>
+          <h1 class="logo">Transit<span>Log</span></h1>
+
+          <p class="sidebar-subtitle">Blog Transport & Logistique</p>
+        </div>
+
+        <!-- MENU -->
+        <div class="sidebar-menu">
+          <a href="{% url 'dashboard-home' %}" class="sidebar-link active">
+            <i class="bi bi-house-door"></i>
+            Tableau de bord
+          </a>
+
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-file-earmark-text"></i>
+            Articles
+          </a>
+
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-grid"></i>
+            Catégories
+          </a>
+
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-chat-left-text"></i>
+            Commentaires
+          </a>
+
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-image"></i>
+            Médias
+          </a>
+
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-file-earmark"></i>
+            Pages
+          </a>
+
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-envelope"></i>
+            Newsletter
+          </a>
+
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-people"></i>
+            Utilisateurs
+          </a>
+
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-gear"></i>
+            Paramètres
+          </a>
+        </div>
+
+        <!-- HELP CARD -->
+        <div class="help-card">
+          <div class="help-icon">
+            <i class="bi bi-book"></i>
+          </div>
+
+          <h5 class="fw-bold">Besoin d’aide ?</h5>
+
+          <p class="text-white-50 mt-2">Consultez notre guide ou contactez le support.</p>
+
+          <button class="btn btn-outline-light w-100 mt-3 rounded-4">Voir le guide</button>
+        </div>
+
+        <!-- USER -->
+        <div class="sidebar-user d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
+
+            <div>
+              <h6 class="mb-1 fw-bold">Admin</h6>
+
+              <small class="text-white-50">admin@transitlog.com</small>
+            </div>
+          </div>
+
+          <i class="bi bi-chevron-down"></i>
+        </div>
+      </aside>
+      <div class="sidebar-overlay"></div>
+
+      <!-- | MAIN CONTENT | -->
+
+      <main class="main-content">
+        <button class="sidebar-toggle" aria-label="Ouvrir le menu" aria-expanded="false"><i class="bi bi-list"></i></button>
+
+        {% block content %}
+
+        {% endblock %}
+
+        <footer>© 2026 TransitLog Dashboard — Tous droits réservés.</footer>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const toggle = document.querySelector('.sidebar-toggle')
+        const sidebar = document.querySelector('.sidebar')
+        const overlay = document.querySelector('.sidebar-overlay')
+      
+        function setAriaExpanded(expanded) {
+          if (toggle) toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false')
+        }
+      
+        toggle?.addEventListener('click', function () {
+          sidebar?.classList.toggle('sidebar-open')
+          overlay?.classList.toggle('active')
+          setAriaExpanded(sidebar?.classList.contains('sidebar-open'))
+        })
+      
+        overlay?.addEventListener('click', function () {
+          sidebar?.classList.remove('sidebar-open')
+          overlay?.classList.remove('active')
+          setAriaExpanded(false)
+        })
+      })
+    </script>
+  </body>
+</html>
