@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'dash_base.html' %}
 
 {% block content %}
   <!-- FORM SECTION -->
@@ -11,20 +11,22 @@
           <p class="section-subtitle">Créez une nouvelle catégorie pour structurer vos contenus.</p>
         </div>
 
-        <form>
+        <form id="category-form" novalidate>
+          <div class="form-alert d-none" role="alert" aria-live="polite"></div>
+
           <div class="row g-4">
             <!-- NAME -->
             <div class="col-12">
-              <label class="form-label">Nom de la catégorie</label>
+              <label class="form-label" for="category-name">Nom de la catégorie</label>
 
-              <input type="text" class="form-control" placeholder="Ex: Transport Maritime" />
+              <input id="category-name" name="category_name" type="text" class="form-control" placeholder="Ex: Transport Maritime" autocomplete="off" />
             </div>
 
             <!-- DESCRIPTION -->
             <div class="col-12">
-              <label class="form-label">Description</label>
+              <label class="form-label" for="category-description">Description</label>
 
-              <textarea class="form-control" placeholder="Décrivez cette catégorie..."></textarea>
+              <textarea id="category-description" name="category_description" class="form-control" placeholder="Décrivez cette catégorie..." autocomplete="off"></textarea>
             </div>
           </div>
 
@@ -37,18 +39,24 @@
             <div class="row g-4">
               <!-- META TITLE -->
               <div class="col-12">
-                <label class="form-label">Meta Title</label>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <label class="form-label" for="meta-title">Meta Title</label>
+                  <span id="title-counter" class="char-counter">0 / 60</span>
+                </div>
 
-                <input type="text" class="form-control" placeholder="Titre SEO de la catégorie" />
+                <input id="meta-title" name="meta_title" type="text" class="form-control" placeholder="Titre SEO de la catégorie" autocomplete="off" />
 
                 <div class="form-note">Recommandé : 50 à 60 caractères.</div>
               </div>
 
               <!-- META DESCRIPTION -->
               <div class="col-12">
-                <label class="form-label">Meta Description</label>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <label class="form-label" for="meta-description">Meta Description</label>
+                  <span id="description-counter" class="char-counter">0 / 160</span>
+                </div>
 
-                <textarea class="form-control" placeholder="Description SEO optimisée..."></textarea>
+                <textarea id="meta-description" name="meta_description" class="form-control" placeholder="Description SEO optimisée..." autocomplete="off"></textarea>
 
                 <div class="form-note">Recommandé : 140 à 160 caractères.</div>
               </div>
@@ -57,27 +65,30 @@
 
           <!-- PREVIEW -->
           <div class="preview-box">
-            <h5>APERÇU DE LA CATÉGORIE</h5>
+            <div class="preview-header d-flex align-items-center justify-content-between">
+              <h5>APERÇU DE LA CATÉGORIE</h5>
+              <span class="preview-status">Prévisualisation en direct</span>
+            </div>
 
             <div class="preview-category">
               <div class="preview-icon">
                 <i class="bi bi-truck"></i>
               </div>
 
-              <h3>Transport Maritime</h3>
+              <h3 class="preview-title">Transport Maritime</h3>
 
-              <p>Retrouvez tous les articles liés au transport maritime, au fret international, aux procédures portuaires et aux stratégies logistiques maritimes.</p>
+              <p class="preview-description">Retrouvez tous les articles liés au transport maritime, au fret international, aux procédures portuaires et aux stratégies logistiques maritimes.</p>
             </div>
           </div>
 
           <!-- BUTTONS -->
           <div class="d-flex flex-wrap gap-3 mt-5">
-            <button type="submit" class="btn-primary-custom">
+            <button id="save-category" type="submit" class="btn-primary-custom" disabled>
               <i class="bi bi-check-circle"></i>
               Enregistrer la catégorie
             </button>
 
-            <button type="button" class="btn-outline-custom">
+            <button id="return-button" type="button" class="btn-outline-custom">
               <i class="bi bi-arrow-left"></i>
               Retour
             </button>
@@ -86,4 +97,76 @@
       </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('category-form')
+      const nameInput = document.getElementById('category-name')
+      const descriptionInput = document.getElementById('category-description')
+      const titleInput = document.getElementById('meta-title')
+      const descInput = document.getElementById('meta-description')
+      const previewTitle = document.querySelector('.preview-title')
+      const previewDescription = document.querySelector('.preview-description')
+      const titleCounter = document.getElementById('title-counter')
+      const descriptionCounter = document.getElementById('description-counter')
+      const saveButton = document.getElementById('save-category')
+      const returnButton = document.getElementById('return-button')
+      const alertBox = document.querySelector('.form-alert')
+    
+      const updatePreview = () => {
+        previewTitle.textContent = nameInput.value.trim() || 'Transport Maritime'
+        previewDescription.textContent = descriptionInput.value.trim() || 'Retrouvez tous les articles liés au transport maritime, au fret international, aux procédures portuaires et aux stratégies logistiques maritimes.'
+      }
+    
+      const updateCounters = () => {
+        const titleLength = titleInput.value.length
+        const descriptionLength = descInput.value.length
+        titleCounter.textContent = `${titleLength} / 60`
+        descriptionCounter.textContent = `${descriptionLength} / 160`
+    
+        titleCounter.classList.toggle('counter-warning', titleLength > 60 || titleLength < 50)
+        descriptionCounter.classList.toggle('counter-warning', descriptionLength > 160 || descriptionLength < 140)
+      }
+    
+      const validateForm = () => {
+        const isValid = nameInput.value.trim().length > 2 && descriptionInput.value.trim().length > 10
+        saveButton.disabled = !isValid
+      }
+    
+      ;[nameInput, descriptionInput].forEach((field) => {
+        field.addEventListener('input', () => {
+          updatePreview()
+          validateForm()
+        })
+      })
+    
+      ;[titleInput, descInput].forEach((field) => {
+        field.addEventListener('input', updateCounters)
+      })
+    
+      form.addEventListener('submit', function (event) {
+        event.preventDefault()
+    
+        alertBox.textContent = 'Catégorie prête à être enregistrée. Vérifiez vos champs et envoyez le formulaire.'
+        alertBox.classList.remove('d-none')
+        alertBox.classList.add('alert-visible')
+    
+        saveButton.textContent = 'Enregistrement...'
+        saveButton.disabled = true
+    
+        window.setTimeout(() => {
+          saveButton.textContent = 'Enregistrer la catégorie'
+          validateForm()
+        }, 1200)
+      })
+    
+      returnButton.addEventListener('click', function () {
+        window.history.back()
+      })
+    
+      updatePreview()
+      updateCounters()
+      validateForm()
+    })
+  </script>
 {% endblock %}

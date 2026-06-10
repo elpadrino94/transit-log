@@ -18,6 +18,8 @@
 
     <!-- costom css -->
     <link rel="stylesheet" href="{% static 'css/dash/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dash/add_post.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dash/add_category.css' %}" />
   </head>
 
   <body>
@@ -38,12 +40,12 @@
             Tableau de bord
           </a>
 
-          <a href="#" class="sidebar-link">
+          <a href="{% url 'add-post' %}" class="sidebar-link">
             <i class="bi bi-file-earmark-text"></i>
             Articles
           </a>
 
-          <a href="#" class="sidebar-link">
+          <a href="{% url 'add-category' %}" class="sidebar-link">
             <i class="bi bi-grid"></i>
             Catégories
           </a>
