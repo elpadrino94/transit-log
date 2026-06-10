@@ -1,5 +1,9 @@
 {% extends 'dash_base.html' %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/dash/add_category.css' %}" />
+{% endblock %}
+
 {% block content %}
   <!-- FORM SECTION -->
   <section class="form-section">
@@ -139,7 +143,6 @@
           validateForm()
         })
       })
-    
       ;[titleInput, descInput].forEach((field) => {
         field.addEventListener('input', updateCounters)
       })

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, ListView
 from app.models import Category, Post
 from .forms import AddPostForm, CategoryAddForm
 
@@ -8,6 +8,15 @@ from .forms import AddPostForm, CategoryAddForm
 
 class DashboardView(TemplateView):
     template_name = 'dash/dashboard.html'
+
+
+# ============================
+# POSTS LIST VIEW
+# ============================
+class PostsListView(ListView):
+    model = Post
+    template_name = 'dash/post_list.html'
+    context_object_name = 'posts'
 
 
 # ============================
