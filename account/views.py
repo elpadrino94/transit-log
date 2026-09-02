@@ -13,17 +13,29 @@ from account.models import CustomUser
 #=================
 
 def login_view(request):
+    # Si user est déjà authentifié
+    if request.user.is_authenticated:
+        if getattr(request.user, 'role', None) == 'admin':
+            return redirect('dashboard-home')
+        return redirect('home')  
+    
     if request.method == 'POST':
         # Handle login form submission
         email = request.POST.get('email')
         password = request.POST.get('password')
         user = authenticate(request, email=email, password=password)
+
         if user is not None:
             login(request, user)
-            return redirect('home')  # Redirect to a success page
+            # Redirect based on user role 
+            if user.role == 'admin':
+                return redirect('dashboard-home')
+            else:
+                return redirect('home')  # Redirect to a success page
         else:
             # Invalid login credentials
             return render(request, 'login.html', {'error': 'Invalid email or password.'})
+        
     return render(request, 'login.html')
 
 

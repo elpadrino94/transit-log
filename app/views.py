@@ -3,8 +3,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, ListView
 from app.models import Post
 
-# Create your views here.
 
+#==========================
+# HOME
+#==========================
 class HomeView(ListView):
     model = Post
     template_name = 'blog/home.html'
@@ -22,6 +24,9 @@ class HomeView(ListView):
 
 
 
+#==========================
+# POST LIST
+#==========================
 class PostListView(ListView):
     model = Post
     template_name = 'blog/post_list.html'
