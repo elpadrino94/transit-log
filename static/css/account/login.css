@@ -57,17 +57,11 @@ body {
     width: 100%;
     max-width: 1320px;
     min-height: 680px;
-
     display: flex;
-
     background: #ffffff;
-
     border-radius: 24px;
-
     overflow: hidden;
-
-    box-shadow:
-        0 25px 70px rgba(11, 31, 68, 0.12);
+    box-shadow: 0 25px 70px rgba(11, 31, 68, 0.12);
 }
 
 
@@ -77,18 +71,14 @@ body {
 
 .auth-presentation {
     width: 50%;
-
     position: relative;
-
     min-height: 680px;
-
     background-image:
         linear-gradient(90deg,
             rgba(3, 22, 54, 0.96) 0%,
             rgba(5, 31, 68, 0.88) 45%,
             rgba(5, 31, 68, 0.42) 100%),
         url("https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1400&q=85");
-
     background-size: cover;
     background-position: center;
 }
@@ -101,14 +91,10 @@ body {
 .presentation-content {
     position: relative;
     z-index: 2;
-
     height: 100%;
-
     display: flex;
     flex-direction: column;
-
     justify-content: center;
-
     padding: 70px;
 }
 
@@ -121,9 +107,7 @@ body {
     font-size: 48px;
     font-weight: 900;
     letter-spacing: -2px;
-
     color: #ffffff;
-
     margin-bottom: 18px;
 }
 
@@ -139,9 +123,7 @@ body {
 .welcome-title {
     font-size: 28px;
     font-weight: 700;
-
     color: #ffffff;
-
     margin-bottom: 8px;
 }
 
@@ -152,12 +134,9 @@ body {
 
 .presentation-description {
     max-width: 430px;
-
     color: rgba(255, 255, 255, 0.82);
-
     font-size: 16px;
     line-height: 1.8;
-
     margin-bottom: 45px;
 }
 
@@ -169,9 +148,7 @@ body {
 .feature-item {
     display: flex;
     align-items: center;
-
     gap: 18px;
-
     margin-bottom: 26px;
 }
 
@@ -179,30 +156,21 @@ body {
 .feature-icon {
     width: 52px;
     height: 52px;
-
     flex-shrink: 0;
-
     border-radius: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: rgba(255, 255, 255, 0.08);
-
     border: 1px solid rgba(255, 255, 255, 0.1);
-
     color: #ffffff;
-
     font-size: 21px;
 }
 
 
 .feature-title {
     margin: 0 0 4px;
-
     color: #ffffff;
-
     font-size: 15px;
     font-weight: 700;
 }
@@ -210,9 +178,7 @@ body {
 
 .feature-description {
     margin: 0;
-
     color: rgba(255, 255, 255, 0.68);
-
     font-size: 13px;
 }
 
@@ -223,13 +189,10 @@ body {
 
 .auth-form-container {
     width: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: #ffffff;
-
     padding: 70px;
 }
 
@@ -247,18 +210,14 @@ body {
 .login-title {
     font-size: 32px;
     font-weight: 800;
-
     color: var(--primary);
-
     margin-bottom: 8px;
 }
 
 
 .login-subtitle {
     color: var(--muted);
-
     font-size: 14px;
-
     margin-bottom: 38px;
 }
 
@@ -269,10 +228,8 @@ body {
 
 .form-label {
     color: var(--text);
-
     font-size: 13px;
     font-weight: 600;
-
     margin-bottom: 9px;
 }
 

@@ -23,11 +23,17 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractUser):
+    ROLE_CHOICES = (
+        ('user', 'User'),
+        ('admin', 'Admin')
+    )
+    
     username = None
 
     email = models.EmailField(unique=True)
     full_name = models.CharField(max_length=255)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='user')
 
     objects = CustomUserManager()
 

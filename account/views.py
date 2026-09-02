@@ -3,6 +3,9 @@ from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login, logout
 
+from account.forms import CustomUserCreationForm
+from account.models import CustomUser
+
 # Create your views here.
 
 #=================
@@ -20,7 +23,23 @@ def login_view(request):
             return redirect('home')  # Redirect to a success page
         else:
             # Invalid login credentials
-            return render(request, 'account/login.html', {'error': 'Invalid email or password.'})
+            return render(request, 'login.html', {'error': 'Invalid email or password.'})
     return render(request, 'login.html')
+
+
+#==============
+# SIGNUP VIEW
+#==============
+def register_view(request):
+    form = CustomUserCreationForm()
+
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+
+    return render(request, 'register.html', {'form': form})
 
 
