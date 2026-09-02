@@ -5,11 +5,18 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, TemplateView, ListView
 from app.models import Category, Post
 from .forms import AddPostForm, CategoryAddForm
+from django.utils import timezone
 
 
 
 class DashboardView(TemplateView):
     template_name = 'dash/dashboard.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = timezone.now()
+        context['published_count'] = Post.objects.filter(status='published', published_at__lte=now).count()
+        return context
 
 
 # ============================
@@ -18,7 +25,18 @@ class DashboardView(TemplateView):
 class PostsListView(ListView):
     model = Post
     template_name = 'dash/post_list.html'
-    context_object_name = 'posts'
+    context_object_name = 'posts' 
+    paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = timezone.now()
+        context['total_articles'] = Post.objects.count()
+        context['published_count'] = Post.objects.filter(status='published', published_at__lte=now).count()
+        context['scheduled_count'] = Post.objects.filter(status='published', published_at__gt=now).count()
+        context['drafts_count'] = Post.objects.filter(status='draft').count()
+        return context
+
 
 
 # ============================

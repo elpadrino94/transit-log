@@ -31,7 +31,7 @@
             <i class="bi bi-file-earmark-text"></i>
           </div>
           <div>
-            <div class="stat-num">128</div>
+            <div class="stat-num">{{ total_articles }}</div>
             <div class="stat-lbl">Total articles</div>
           </div>
         </div>
@@ -40,7 +40,7 @@
             <i class="bi bi-check-circle"></i>
           </div>
           <div>
-            <div class="stat-num">82</div>
+            <div class="stat-num">{{ published_count }}</div>
             <div class="stat-lbl">Publiés</div>
           </div>
         </div>
@@ -49,7 +49,7 @@
             <i class="bi bi-clock"></i>
           </div>
           <div>
-            <div class="stat-num">18</div>
+            <div class="stat-num">{{ scheduled_count }}</div>
             <div class="stat-lbl">En attente</div>
           </div>
         </div>
@@ -58,7 +58,7 @@
             <i class="bi bi-pencil"></i>
           </div>
           <div>
-            <div class="stat-num">28</div>
+            <div class="stat-num">{{ drafts_count }}</div>
             <div class="stat-lbl">Brouillons</div>
           </div>
         </div>
@@ -100,186 +100,92 @@
             <th>Catégorie</th>
             <th>Statut</th>
             <th>Date</th>
-            <th>Vues</th>
+            <!-- <th>Vues</th> -->
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <!-- Row 1 -->
-          <tr>
-            <td>
-              <div class="article-row-top d-flex gap-3 align-items-start">
-                <img class="article-thumb" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=128&q=70" alt="" />
-                <div>
-                  <div class="article-title">Comment réduire les coûts logistiques sans impacter la qualité ?</div>
-                  <div class="article-excerpt">Découvrez les meilleures stratégies pour optimiser…</div>
+          {% for post in posts %}
+            <tr>
+              <td>
+                <div class="article-row-top d-flex gap-3 align-items-start">
+                  <img class="article-thumb" src="{{ post.image.url }}" alt="{{ post.title }}" />
+                  <div>
+                    <div class="article-title">{{ post.title }}</div>
+                    <div class="article-excerpt">{{ post.excerpt|truncatechars:70 }}</div>
+                  </div>
                 </div>
-              </div>
-            </td>
-            <td>
-              <span class="badge-cat logistique">Logistique</span>
-            </td>
-            <td>
-              <span class="status-badge publie"><span class="dot"></span>Publié</span>
-            </td>
-            <td style="font-size:.8rem;color:#374151;">
-              15 mai 2024<br /><span style="color:#9ca3af;">10:30</span>
-            </td>
-            <td style="font-weight:600;">1.254</td>
-            <td>
-              <div class="d-flex gap-1">
-                <button class="btn-action edit"><i class="bi bi-pencil"></i></button>
-                <button class="btn-action del"><i class="bi bi-trash"></i></button>
-              </div>
-            </td>
-          </tr>
+              </td>
 
-          <!-- Row 2 -->
-          <tr>
-            <td>
-              <div class="article-row-top d-flex gap-3 align-items-start">
-                <img class="article-thumb" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=128&q=70" alt="" />
-                <div>
-                  <div class="article-title">Les documents nécessaires pour l'import-export en Afrique</div>
-                  <div class="article-excerpt">Une vue détaillée des procédures douanières et…</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <span class="badge-cat transit">Transit Douanier</span>
-            </td>
-            <td>
-              <span class="status-badge publie"><span class="dot"></span>Publié</span>
-            </td>
-            <td style="font-size:.8rem;color:#374151;">
-              10 mai 2024<br /><span style="color:#9ca3af;">08:15</span>
-            </td>
-            <td style="font-weight:600;">987</td>
-            <td>
-              <div class="d-flex gap-1">
-                <button class="btn-action edit"><i class="bi bi-pencil"></i></button>
-                <button class="btn-action del"><i class="bi bi-trash"></i></button>
-              </div>
-            </td>
-          </tr>
+              <td>
+                <span class="badge-cat logistique">{{ post.category }}</span>
+              </td>
 
-          <!-- Row 3 -->
-          <tr>
-            <td>
-              <div class="article-row-top d-flex gap-3 align-items-start">
-                <img class="article-thumb" src="https://images.unsplash.com/photo-1498855926480-d98e83099315?w=128&q=70" alt="" />
-                <div>
-                  <div class="article-title">Fret maritime : tendances et enjeux du marché mondial</div>
-                  <div class="article-excerpt">Analyse des évolutions du transport maritime et…</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <span class="badge-cat maritime">Transport Maritime</span>
-            </td>
-            <td>
-              <span class="status-badge publie"><span class="dot"></span>Publié</span>
-            </td>
-            <td style="font-size:.8rem;color:#374151;">
-              8 mai 2024<br /><span style="color:#9ca3af;">14:22</span>
-            </td>
-            <td style="font-weight:600;">1.632</td>
-            <td>
-              <div class="d-flex gap-1">
-                <button class="btn-action edit"><i class="bi bi-pencil"></i></button>
-                <button class="btn-action del"><i class="bi bi-trash"></i></button>
-              </div>
-            </td>
-          </tr>
+              <td>
+                <span class="status-badge publie"><span class="dot"></span>{{ post.status }}</span>
+              </td>
 
-          <!-- Row 4 -->
-          <tr>
-            <td>
-              <div class="article-row-top d-flex gap-3 align-items-start">
-                <img class="article-thumb" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=128&q=70" alt="" />
-                <div>
-                  <div class="article-title">Transport aérien : rapidité, coûts et contraintes</div>
-                  <div class="article-excerpt">Comprendre les avantages stratégiques du fret…</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <span class="badge-cat aerien">Transport Aérien</span>
-            </td>
-            <td>
-              <span class="status-badge attente"><span class="dot"></span>En attente</span>
-            </td>
-            <td style="font-size:.8rem;color:#374151;">
-              6 mai 2024<br /><span style="color:#9ca3af;">09:45</span>
-            </td>
-            <td style="font-weight:600;">456</td>
-            <td>
-              <div class="d-flex gap-1">
-                <button class="btn-action edit"><i class="bi bi-pencil"></i></button>
-                <button class="btn-action del"><i class="bi bi-trash"></i></button>
-              </div>
-            </td>
-          </tr>
+              <td style="font-size:.8rem;color:#374151;">
+                {{ post.published_at|date:'d/m H:i' }}<br /><!-- <span style="color:#9ca3af;">10:30</span> -->
+              </td>
 
-          <!-- Row 5 -->
-          <tr>
-            <td>
-              <div class="article-row-top d-flex gap-3 align-items-start">
-                <img class="article-thumb" src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=128&q=70" alt="" />
-                <div>
-                  <div class="article-title">Optimiser la gestion des entrepôts en 2024</div>
-                  <div class="article-excerpt">Les meilleures pratiques modernes pour améliorer…</div>
+              <!-- <td style="font-weight:600;">1.254</td> -->
+
+              <!-- Actions button -->
+              <td>
+                <div class="d-flex gap-1">
+                  <button class="btn-action edit"><i class="bi bi-pencil"></i></button>
+                  <button class="btn-action del"><i class="bi bi-trash"></i></button>
                 </div>
-              </div>
-            </td>
-            <td>
-              <span class="badge-cat logistique">Logistique</span>
-            </td>
-            <td>
-              <span class="status-badge brouillon"><span class="dot"></span>Brouillon</span>
-            </td>
-            <td style="font-size:.8rem;color:#374151;">
-              4 mai 2024<br /><span style="color:#9ca3af;">16:10</span>
-            </td>
-            <td style="font-weight:600;">0</td>
-            <td>
-              <div class="d-flex gap-1">
-                <button class="btn-action edit"><i class="bi bi-pencil"></i></button>
-                <button class="btn-action del"><i class="bi bi-trash"></i></button>
-              </div>
-            </td>
-          </tr>
+              </td>
+            </tr>
+          {% endfor %}
         </tbody>
       </table>
 
       <!-- Pagination -->
       <div class="pagination-bar">
-        <span class="info">Affichage de 1 à 5 sur 128 articles</span>
-        <nav>
-          <ul class="pagination mb-0">
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Précédent</a>
-            </li>
-            <li class="page-item active">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">5</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">Suivant</a>
-            </li>
-          </ul>
-        </nav>
+        {% if is_paginated %}
+          <span class="info">Affichage de {{ page_obj.start_index }} à {{ page_obj.end_index }} sur {{ paginator.count }} articles</span>
+          <nav>
+            <ul class="pagination mb-0">
+              {% if page_obj.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Précédent</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <span class="page-link">Précédent</span>
+                </li>
+              {% endif %}
+
+              {% for num in paginator.page_range %}
+                {% if num == page_obj.number %}
+                  <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                  </li>
+                {% else %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+
+              {% if page_obj.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ page_obj.next_page_number }}">Suivant</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <span class="page-link">Suivant</span>
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+        {% else %}
+          <span class="info">Affichage de tous les {{ posts|length }} articles</span>
+        {% endif %}
       </div>
     </div>
   </main>
