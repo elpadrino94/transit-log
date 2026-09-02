@@ -1,0 +1,194 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Connexion - TransitLog</title>
+
+    <!-- ========== BOOTSTRAP 5 ========== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- ============= BOOTSTRAP ICONS =========== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- ============= GOOGLE FONT - INTER ========== -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="{% static 'css/account/login.css' %}" />
+  </head>
+
+  <body>
+    <!-- ============= PAGE DE CONNEXION ========== -->
+
+    <main class="auth-page">
+      <div class="auth-container">
+        <!-- =============== PARTIE GAUCHE Présentation de TransitLog ================== -->
+
+        <section class="auth-presentation">
+          <div class="presentation-content">
+            <!-- Titre de bienvenue -->
+            <h2 class="welcome-title">Bienvenue sur</h2>
+
+            <!-- Logo -->
+            <h1 class="brand-title">Transit<span>Log</span></h1>
+
+            <!-- Description -->
+            <p class="presentation-description">Le blog de référence sur le transport, le transit et la logistique.</p>
+
+            <!-- ========== FEATURE 1 ========== -->
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="bi bi-book"></i>
+              </div>
+
+              <div>
+                <h3 class="feature-title">Actualités & Analyses</h3>
+
+                <p class="feature-description">Restez informé des dernières tendances.</p>
+              </div>
+            </div>
+
+            <!-- ========== FEATURE 2 ========== -->
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="bi bi-lightbulb"></i>
+              </div>
+
+              <div>
+                <h3 class="feature-title">Conseils d’Experts</h3>
+
+                <p class="feature-description">Optimisez vos opérations à l’international.</p>
+              </div>
+            </div>
+
+            <!-- ============ FEATURE 3 ========== -->
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="bi bi-people"></i>
+              </div>
+
+              <div>
+                <h3 class="feature-title">Communauté Professionnelle</h3>
+
+                <p class="feature-description">Échangez avec des experts du secteur.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =============== PARTIE DROITE FORMULAIRE DE CONNEXION ============== -->
+
+        <section class="auth-form-container">
+          <div class="login-form">
+            <!-- ============ HEADER FORMULAIRE =========== -->
+
+            <h2 class="login-title">Connexion</h2>
+
+            <p class="login-subtitle">Connectez-vous à votre compte</p>
+
+            <!-- =============== FORMULAIRE =========== -->
+
+            <form action="#" method="POST">
+              {% csrf_token %}
+
+              <!-- ===== EMAIL ===== -->
+              <div class="mb-4">
+                <label for="email" class="form-label">Adresse e-mail</label>
+
+                <div class="input-group-custom">
+                  <i class="bi bi-envelope input-icon"></i>
+
+                  <input type="email" id="email" name="email" class="form-control form-control-custom" placeholder="votre@email.com" autocomplete="email" required />
+                </div>
+              </div>
+
+              <!-- ======== PASSWORD ======== -->
+
+              <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+
+                <div class="input-group-custom">
+                  <i class="bi bi-lock input-icon"></i>
+
+                  <input type="password" id="password" name="password" class="form-control form-control-custom" placeholder="Votre mot de passe" autocomplete="current-password" required />
+
+                  <!--    
+                        Pas de JavaScript :
+                        cette icône est uniquement visuelle.
+                       -->
+
+                  <i class="bi bi-eye-slash password-icon"></i>
+                </div>
+              </div>
+
+              <!-- =========== OPTIONS ============= -->
+
+              <div class="form-options">
+                <div class="remember-wrapper">
+                  <input type="checkbox" id="remember" name="remember" />
+
+                  <label for="remember" class="remember-label">Se souvenir de moi</label>
+                </div>
+
+                <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+              </div>
+
+              <!-- ============ LOGIN BUTTON ================== -->
+
+              <button type="submit" class="btn-login">
+                <i class="bi bi-person me-2"></i>
+                Se connecter
+              </button>
+
+              <!-- ========= DIVIDER ============ -->
+
+              <div class="divider">ou continuer avec</div>
+
+              <!-- ========= SOCIAL LOGIN ========== -->
+
+              <div class="social-buttons">
+                <!-- Google -->
+                <button type="button" class="social-btn">
+                  <i class="bi bi-google google-icon"></i>
+                  Google
+                </button>
+
+                <!-- Facebook -->
+                <button type="button" class="social-btn">
+                  <i class="bi bi-facebook facebook-icon"></i>
+                  Facebook
+                </button>
+
+                <!-- LinkedIn -->
+                <button type="button" class="social-btn">
+                  <i class="bi bi-linkedin linkedin-icon"></i>
+                  LinkedIn
+                </button>
+              </div>
+
+              <!-- ============ REGISTER LINK ========== -->
+
+              <p class="register-text">
+                Vous n'avez pas de compte ?
+
+                <a href="#">S'inscrire</a>
+              </p>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!--     =========================================================
+         BOOTSTRAP JS NON NÉCESSAIRE
+         La page fonctionne volontairement sans JavaScript.
+    ==========================================================     -->
+  </body>
+</html>
