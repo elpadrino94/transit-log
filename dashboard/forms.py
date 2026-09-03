@@ -7,6 +7,12 @@ class CategoryAddForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'description', 'meta_title', 'meta_description']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'category-name', 'placeholder': 'Entrez le nom de la catégorie'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'id': 'category-description', 'placeholder': 'Rédiger une description pour la catégorie', 'rows': 3}),
+            'meta_title': forms.TextInput(attrs={'class': 'form-control', 'id': 'meta-title', 'placeholder': 'Titre SEO optimisé'}),
+            'meta_description': forms.Textarea(attrs={'class': 'form-control', 'id': 'meta-description', 'placeholder': 'Description SEO optimisée', 'rows': 3}),
+        }
 
 
 

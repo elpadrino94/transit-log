@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Count
 
 from django.views.generic import CreateView, TemplateView, ListView
 from app.models import Category, Post
@@ -46,6 +47,8 @@ class AddCategoryView(CreateView):
     model = Category
     form_class = CategoryAddForm
     template_name = 'dash/add_category.html'
+    success_url = reverse_lazy('categories-list')
+
 
 
 # ==============================
@@ -69,3 +72,16 @@ class AddPostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+
+class ListCategoriesView(ListView):
+    template_name = 'dash/list_category.html'
+    context_object_name = 'categories'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return Category.objects.annotate(article_count=Count('posts'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_categories'] = Category.objects.count()
+        return context

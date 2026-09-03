@@ -1,0 +1,454 @@
+/* =========================================================
+   SECTION CATÉGORIES
+========================================================= */
+
+.categories-section {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.section-title {
+    margin: 0;
+    color: #0f172a;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.section-description {
+    margin: 5px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.add-category-btn {
+    border: none;
+    background: #f97316;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.add-category-btn:hover {
+    background: #ea580c;
+}
+
+.add-category-btn i {
+    margin-right: 6px;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.category-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.search-category {
+    position: relative;
+    width: 320px;
+}
+
+.search-category i {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    z-index: 2;
+}
+
+.search-category input {
+    height: 42px;
+    padding-left: 40px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.search-category input:focus {
+    border-color: #f97316;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.category-filter {
+    width: 200px;
+    height: 42px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TABLEAU
+========================================================= */
+
+.category-table-wrapper {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.category-table {
+    margin-bottom: 0;
+    min-width: 900px;
+}
+
+.category-table thead {
+    background: #f8fafc;
+}
+
+.category-table thead th {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+.category-table tbody td {
+    padding: 15px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #475569;
+    font-size: 13px;
+}
+
+.category-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.category-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.category-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+.category-id {
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INFORMATIONS CATÉGORIE
+========================================================= */
+
+.category-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.category-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #fff7ed;
+    color: #f97316;
+
+    font-size: 18px;
+}
+
+.category-info h6 {
+    margin: 0 0 3px;
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.category-info small {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SLUG
+========================================================= */
+
+.category-slug {
+    display: inline-block;
+    padding: 5px 8px;
+    border-radius: 5px;
+    background: #f1f5f9;
+    color: #64748b;
+    font-family: monospace;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   NOMBRE D'ARTICLES
+========================================================= */
+
+.article-count {
+    color: #334155;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   STATUT
+========================================================= */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 5px 9px;
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status-badge span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.status-badge.active {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.status-badge.active span {
+    background: #10b981;
+}
+
+.status-badge.inactive {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.status-badge.inactive span {
+    background: #94a3b8;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.date {
+    color: #64748b;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.category-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 7px;
+}
+
+.action-btn {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.action-btn.edit {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.action-btn.edit:hover {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.action-btn.delete {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.action-btn.delete:hover {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   FOOTER DU TABLEAU
+========================================================= */
+
+.table-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 20px;
+}
+
+.results-info {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.results-info strong {
+    color: #334155;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pagination {
+    margin: 0;
+    gap: 5px;
+}
+
+.pagination .page-link {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 7px !important;
+
+    color: #64748b;
+    font-size: 12px;
+}
+
+.pagination .page-link:hover {
+    background: #f8fafc;
+    color: #f97316;
+}
+
+.pagination .page-item.active .page-link {
+    background: #f97316;
+    border-color: #f97316;
+    color: #ffffff;
+}
+
+.pagination .page-item.disabled .page-link {
+    background: #f8fafc;
+    color: #cbd5e1;
+}
+
+
+/* =========================================================
+   RESPONSIVE TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .categories-section {
+        padding: 18px;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .add-category-btn {
+        width: 100%;
+    }
+
+    .category-toolbar {
+        flex-direction: column;
+    }
+
+    .search-category,
+    .category-filter {
+        width: 100%;
+    }
+
+    .table-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .categories-section {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .section-title {
+        font-size: 16px;
+    }
+
+    .section-description {
+        font-size: 12px;
+    }
+
+    .category-table-wrapper {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .results-info {
+        font-size: 11px;
+    }
+
+}

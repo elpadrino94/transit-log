@@ -16,7 +16,8 @@
           <p class="section-subtitle">Créez une nouvelle catégorie pour structurer vos contenus.</p>
         </div>
 
-        <form id="category-form" novalidate>
+        <form method="post" id="category-form">
+          {% csrf_token %}
           <div class="form-alert d-none" role="alert" aria-live="polite"></div>
 
           <div class="row g-4">
@@ -24,14 +25,14 @@
             <div class="col-12">
               <label class="form-label" for="category-name">Nom de la catégorie</label>
 
-              <input id="category-name" name="category_name" type="text" class="form-control" placeholder="Ex: Transport Maritime" autocomplete="off" />
+              {{ form.name }}
             </div>
 
             <!-- DESCRIPTION -->
             <div class="col-12">
               <label class="form-label" for="category-description">Description</label>
 
-              <textarea id="category-description" name="category_description" class="form-control" placeholder="Décrivez cette catégorie..." autocomplete="off"></textarea>
+              {{ form.description }}
             </div>
           </div>
 
@@ -49,7 +50,7 @@
                   <span id="title-counter" class="char-counter">0 / 60</span>
                 </div>
 
-                <input id="meta-title" name="meta_title" type="text" class="form-control" placeholder="Titre SEO de la catégorie" autocomplete="off" />
+                {{ form.meta_title }}
 
                 <div class="form-note">Recommandé : 50 à 60 caractères.</div>
               </div>
@@ -61,7 +62,7 @@
                   <span id="description-counter" class="char-counter">0 / 160</span>
                 </div>
 
-                <textarea id="meta-description" name="meta_description" class="form-control" placeholder="Description SEO optimisée..." autocomplete="off"></textarea>
+                {{ form.meta_description }}
 
                 <div class="form-note">Recommandé : 140 à 160 caractères.</div>
               </div>
@@ -80,7 +81,7 @@
                 <i class="bi bi-truck"></i>
               </div>
 
-              <h3 class="preview-title">Transport Maritime</h3>
+              <h3 class="preview-title">{{ category.name }}</h3>
 
               <p class="preview-description">Retrouvez tous les articles liés au transport maritime, au fret international, aux procédures portuaires et aux stratégies logistiques maritimes.</p>
             </div>
@@ -116,58 +117,59 @@
       const descriptionCounter = document.getElementById('description-counter')
       const saveButton = document.getElementById('save-category')
       const returnButton = document.getElementById('return-button')
-      const alertBox = document.querySelector('.form-alert')
     
       const updatePreview = () => {
-        previewTitle.textContent = nameInput.value.trim() || 'Transport Maritime'
-        previewDescription.textContent = descriptionInput.value.trim() || 'Retrouvez tous les articles liés au transport maritime, au fret international, aux procédures portuaires et aux stratégies logistiques maritimes.'
+        if (previewTitle && nameInput) {
+          previewTitle.textContent = nameInput.value.trim() || 'Transport Maritime'
+        }
+        if (previewDescription && descriptionInput) {
+          previewDescription.textContent = descriptionInput.value.trim() || 'Retrouvez tous les articles...'
+        }
       }
     
       const updateCounters = () => {
-        const titleLength = titleInput.value.length
-        const descriptionLength = descInput.value.length
-        titleCounter.textContent = `${titleLength} / 60`
-        descriptionCounter.textContent = `${descriptionLength} / 160`
-    
-        titleCounter.classList.toggle('counter-warning', titleLength > 60 || titleLength < 50)
-        descriptionCounter.classList.toggle('counter-warning', descriptionLength > 160 || descriptionLength < 140)
+        if (titleInput && titleCounter) {
+          const titleLength = titleInput.value.length
+          titleCounter.textContent = `${titleLength} / 60`
+          titleCounter.classList.toggle('counter-warning', titleLength > 60 || (titleLength < 50 && titleLength > 0))
+        }
+        if (descInput && descriptionCounter) {
+          const descriptionLength = descInput.value.length
+          descriptionCounter.textContent = `${descriptionLength} / 160`
+          descriptionCounter.classList.toggle('counter-warning', descriptionLength > 160 || (descriptionLength < 140 && descriptionLength > 0))
+        }
       }
     
       const validateForm = () => {
-        const isValid = nameInput.value.trim().length > 2 && descriptionInput.value.trim().length > 10
-        saveButton.disabled = !isValid
+        if (nameInput && descriptionInput && saveButton) {
+          const isValid = nameInput.value.trim().length > 2 && descriptionInput.value.trim().length > 10
+          saveButton.disabled = !isValid
+        }
       }
     
-      ;[nameInput, descriptionInput].forEach((field) => {
-        field.addEventListener('input', () => {
-          updatePreview()
-          validateForm()
+      // Écouteurs d'événements pour la prévisualisation et la validation
+      if (nameInput && descriptionInput) {
+        ;[nameInput, descriptionInput].forEach((field) => {
+          field.addEventListener('input', () => {
+            updatePreview()
+            validateForm()
+          })
         })
-      })
-      ;[titleInput, descInput].forEach((field) => {
-        field.addEventListener('input', updateCounters)
-      })
+      }
     
-      form.addEventListener('submit', function (event) {
-        event.preventDefault()
+      if (titleInput && descInput) {
+        ;[titleInput, descInput].forEach((field) => {
+          field.addEventListener('input', updateCounters)
+        })
+      }
     
-        alertBox.textContent = 'Catégorie prête à être enregistrée. Vérifiez vos champs et envoyez le formulaire.'
-        alertBox.classList.remove('d-none')
-        alertBox.classList.add('alert-visible')
+      if (returnButton) {
+        returnButton.addEventListener('click', function () {
+          window.history.back()
+        })
+      }
     
-        saveButton.textContent = 'Enregistrement...'
-        saveButton.disabled = true
-    
-        window.setTimeout(() => {
-          saveButton.textContent = 'Enregistrer la catégorie'
-          validateForm()
-        }, 1200)
-      })
-    
-      returnButton.addEventListener('click', function () {
-        window.history.back()
-      })
-    
+      // Initialisation au chargement
       updatePreview()
       updateCounters()
       validateForm()

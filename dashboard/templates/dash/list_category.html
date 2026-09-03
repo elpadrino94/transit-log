@@ -1,0 +1,144 @@
+{% extends 'dash_base.html' %}
+{% comment %} {% load static %} {% endcomment %}
+
+{% block title %}
+  List category
+{% endblock %}
+
+{% comment %} {% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/dash/list_category.css' %}" />
+{% endblock %} {% endcomment %}
+
+{% block content %}
+  <!-- ============== SECTION : LISTE DES CATÉGORIES ================== -->
+  <div class="categories-section">
+    <!-- En-tête -->
+    <div class="section-header">
+      <div>
+        <h5 class="section-title">Liste des catégories</h5>
+        <p class="section-description">Gérez les catégories de vos articles.</p>
+      </div>
+
+      <a href="{% url 'add-category' %}" class="btn btn-primary add-category-btn">
+        <i class="bi bi-plus-lg"></i>
+        Ajouter une catégorie
+      </a>
+    </div>
+
+    <!-- Barre de recherche -->
+    <div class="category-toolbar">
+      <div class="search-category">
+        <i class="bi bi-search"></i>
+        <input type="search" class="form-control" placeholder="Rechercher une catégorie..." />
+      </div>
+
+      <select class="form-select category-filter">
+        <option selected>Toutes les catégories</option>
+        <option>Transport</option>
+        <option>Logistique</option>
+        <option>Transit</option>
+        <option>Douane</option>
+      </select>
+    </div>
+
+    <!-- Tableau -->
+    <div class="table-responsive category-table-wrapper">
+      <table class="table category-table align-middle">
+        <thead>
+          <tr>
+            <th width="70">#</th>
+            <th>Catégorie</th>
+            <th>Slug</th>
+            <th>Articles</th>
+            <!-- <th>Statut</th> -->
+            <!-- <th>Date de création</th> -->
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Catégorie 1 -->
+          {% for category in categories %}
+            <tr>
+              <td>
+                <span class="category-id">{{ forloop.counter }}</span>
+              </td>
+
+              <td>
+                <div class="category-info">
+                  <div class="category-icon">
+                    <i class="bi bi-truck"></i>
+                  </div>
+
+                  <div>
+                    <h6>{{ category.name }}</h6>
+                    <small>Actualités du {{ category.name }}</small>
+                  </div>
+                </div>
+              </td>
+
+              <td>
+                <span class="category-slug">{{ category.slug }}</span>
+              </td>
+
+              <td>
+                <span class="article-count">{{ category.article_count }} articles</span>
+              </td>
+
+              <!--       <td>
+                <span class="status-badge active">
+                  <span></span>
+                  Active
+                </span>
+                </td>       -->
+
+              <!--        <td>
+                <span class="date">12 Août 2026</span>
+              </td>       -->
+
+              <td>
+                <div class="category-actions">
+                  <a href="#" class="action-btn edit" title="Modifier"><i class="bi bi-pencil"></i></a>
+
+                  <a href="#" class="action-btn delete" title="Supprimer"><i class="bi bi-trash3"></i></a>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pied du tableau -->
+    <div class="table-footer">
+      <span class="results-info">
+        Affichage de <strong>1 à 4</strong> sur
+        <strong>{{ total_categories }} catégories</strong>
+      </span>
+
+      <nav>
+        <ul class="pagination">
+          <li class="page-item disabled">
+            <a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a>
+          </li>
+
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+{% endblock %}
