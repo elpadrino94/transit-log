@@ -85,22 +85,22 @@
                 <span class="article-count">{{ category.article_count }} articles</span>
               </td>
 
-              <!--       <td>
+              <!--         <td>
                 <span class="status-badge active">
                   <span></span>
                   Active
                 </span>
-                </td>       -->
+                </td>         -->
 
-              <!--        <td>
+              <!--          <td>
                 <span class="date">12 Août 2026</span>
-              </td>       -->
+              </td>         -->
 
               <td>
                 <div class="category-actions">
-                  <a href="#" class="action-btn edit" title="Modifier"><i class="bi bi-pencil"></i></a>
+                  <a href="{% url 'update-category' category.slug %}" class="action-btn edit" title="Modifier"><i class="bi bi-pencil"></i></a>
 
-                  <a href="#" class="action-btn delete" title="Supprimer"><i class="bi bi-trash3"></i></a>
+                  <button type="button" class="action-btn delete js-delete-category" title="Supprimer {{ category.name }}" data-category-name="{{ category.name|escapejs }}" data-delete-url="{% url 'delete-category' category.slug %}" aria-label="Supprimer la catégorie {{ category.name }}"><i class="bi bi-trash3"></i></button>
                 </div>
               </td>
             </tr>
@@ -141,4 +141,59 @@
       </nav>
     </div>
   </div>
+
+  <div class="delete-modal" id="deleteCategoryModal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle" aria-describedby="deleteModalDescription" hidden>
+    <div class="delete-modal-backdrop js-close-delete-modal"></div>
+    <div class="delete-modal-dialog">
+      <button type="button" class="delete-modal-close js-close-delete-modal" aria-label="Fermer"><i class="bi bi-x-lg"></i></button>
+      <div class="delete-modal-icon">
+        <i class="bi bi-trash3"></i>
+      </div>
+      <h2 id="deleteModalTitle">Supprimer la catégorie ?</h2>
+      <p id="deleteModalDescription">
+        Vous êtes sur le point de supprimer <strong class="js-category-name"></strong>. Cette action est irréversible et supprimera également ses articles.
+      </p>
+      <form method="post" class="delete-modal-actions" id="deleteCategoryForm">
+        {% csrf_token %}
+        <button type="button" class="btn btn-light js-close-delete-modal">Annuler</button>
+        <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i> Supprimer</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const modal = document.querySelector('#deleteCategoryModal')
+      const form = document.querySelector('#deleteCategoryForm')
+      const categoryName = document.querySelector('.js-category-name')
+      const deleteButtons = document.querySelectorAll('.js-delete-category')
+      const closeButtons = document.querySelectorAll('.js-close-delete-modal')
+      let lastTrigger
+    
+      function closeModal() {
+        modal.hidden = true
+        document.body.classList.remove('modal-open')
+        lastTrigger?.focus()
+      }
+    
+      deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          lastTrigger = button
+          categoryName.textContent = button.dataset.categoryName
+          form.action = button.dataset.deleteUrl
+          modal.hidden = false
+          document.body.classList.add('modal-open')
+          modal.querySelector('.delete-modal-close').focus()
+        })
+      })
+    
+      closeButtons.forEach(function (button) {
+        button.addEventListener('click', closeModal)
+      })
+    
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && !modal.hidden) closeModal()
+      })
+    })
+  </script>
 {% endblock %}

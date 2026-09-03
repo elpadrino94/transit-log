@@ -135,8 +135,9 @@
               <!-- Actions button -->
               <td>
                 <div class="d-flex gap-1">
-                  <button class="btn-action edit"><i class="bi bi-pencil"></i></button>
-                  <button class="btn-action del"><i class="bi bi-trash"></i></button>
+                  <a href="{% url 'update-post' post.slug %}" class="btn-action edit" title="Modifier {{ post.title }}" aria-label="Modifier l'article {{ post.title }}"><i class="bi bi-pencil"></i></a>
+
+                  <button type="button" class="btn-action del js-delete-post" title="Supprimer {{ post.title }}" aria-label="Supprimer l'article {{ post.title }}" data-post-title="{{ post.title|escapejs }}" data-delete-url="{% url 'delete-post' post.slug %}"><i class="bi bi-trash"></i></button>
                 </div>
               </td>
             </tr>
@@ -189,4 +190,61 @@
       </div>
     </div>
   </main>
+
+  <!-- Modal de confirmation de suppression -->
+  <div class="post-delete-modal" id="deletePostModal" role="dialog" aria-modal="true" aria-labelledby="postDeleteModalTitle" aria-describedby="postDeleteModalDescription" hidden>
+    <div class="post-delete-backdrop js-close-post-delete"></div>
+    <div class="post-delete-dialog">
+      <button type="button" class="post-delete-close js-close-post-delete" aria-label="Fermer"><i class="bi bi-x-lg"></i></button>
+      <div class="post-delete-icon">
+        <i class="bi bi-trash3"></i>
+      </div>
+      <h2 id="postDeleteModalTitle">Supprimer l'article ?</h2>
+      <p id="postDeleteModalDescription">
+        Vous êtes sur le point de supprimer <strong class="js-post-title"></strong>. Cette action est irréversible.
+      </p>
+
+      <form method="post" class="post-delete-actions" id="deletePostForm">
+        {% csrf_token %}
+        <button type="button" class="btn btn-cancel btn-light js-close-post-delete">Annuler</button>
+        <button type="submit" class="btn btn-reset btn-danger"><i class="bi bi-trash3"></i> Supprimer</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const modal = document.querySelector('#deletePostModal')
+      const form = document.querySelector('#deletePostForm')
+      const postTitle = document.querySelector('.js-post-title')
+      const deleteButtons = document.querySelectorAll('.js-delete-post')
+      const closeButtons = document.querySelectorAll('.js-close-post-delete')
+      let lastTrigger
+    
+      function closeModal() {
+        modal.hidden = true
+        document.body.classList.remove('modal-open')
+        lastTrigger?.focus()
+      }
+    
+      deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          lastTrigger = button
+          postTitle.textContent = button.dataset.postTitle
+          form.action = button.dataset.deleteUrl
+          modal.hidden = false
+          document.body.classList.add('modal-open')
+          modal.querySelector('.post-delete-close').focus()
+        })
+      })
+    
+      closeButtons.forEach(function (button) {
+        button.addEventListener('click', closeModal)
+      })
+    
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && !modal.hidden) closeModal()
+      })
+    })
+  </script>
 {% endblock %}

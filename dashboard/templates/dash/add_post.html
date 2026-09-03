@@ -16,7 +16,13 @@
       <div class="container">
         <span class="hero-badge">ADMINISTRATION BLOG</span>
 
-        <h1>Ajouter un nouvel article</h1>
+        <h1>
+          {% if object %}
+            Modifier l'article
+          {% else %}
+            Ajouter un nouvel article
+          {% endif %}
+        </h1>
 
         <p>Publiez rapidement vos contenus logistiques, transport et transit douanier avec une interface moderne, responsive et optimisée SEO.</p>
       </div>
@@ -118,7 +124,11 @@
             <div class="d-flex flex-wrap gap-3 mt-5">
               <button type="submit" class="btn-primary-custom">
                 <i class="bi bi-check-circle"></i>
-                Publier l'article
+                {% if object %}
+                  Enregistrer les modifications
+                {% else %}
+                  Publier l'article
+                {% endif %}
               </button>
 
               <button type="button" class="btn-outline-custom">

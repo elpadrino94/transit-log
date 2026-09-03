@@ -67,15 +67,21 @@
               {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}">
                   {% csrf_token %}
-                  <button type="submit" class="btn-subscribe">
-                    <i class="bi bi-envelope"></i>
+                  <button type="submit" class="btn-subscribe btn-danger">
+                    <i class="bi bi-box-arrow-right"></i>
                     Déconnecter
                   </button>
                 </form>
               {% else %}
                 <a class="btn btn-outline-primary" href="{% url 'login' %}">
-                  <i class="bi bi-box-arrow-in-right"></i>
+                  <i class="bi bi-box-arrow-in-left"></i>
                   Se connecter
+                </a>
+              {% endif %}
+              {% if user.role == 'admin' %}
+                <a class="btn btn-outline-success" href="{% url 'dashboard-home' %}">
+                  <i class="bi bi-person-dash-fill"></i>
+                  Dashboard
                 </a>
               {% endif %}
             </div>
