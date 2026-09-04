@@ -11,9 +11,13 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(blank=True)
+    icon = models.CharField(
+        max_length=100,
+        default='bi bi-folder',
+        help_text="Classe Bootstrap Icons, ex: bi bi-truck"
+    )
     meta_title = models.CharField(max_length=60, blank=True)
     meta_description = models.CharField(max_length=160, blank=True)
-
 
     class Meta:
         verbose_name_plural = 'Categories'

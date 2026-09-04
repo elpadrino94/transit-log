@@ -81,6 +81,14 @@
             <i class="bi bi-gear"></i>
             Paramètres
           </a>
+
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="sidebar-link text-danger sidebar-button">
+              <i class="bi bi-box-arrow-right"></i>
+              Déconnexion
+            </button>
+          </form>
         </div>
 
         <!-- HELP CARD -->

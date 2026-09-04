@@ -20,9 +20,7 @@ a {
 }
 
 
-/* =========================
-                  FORM SECTION
-              ==========================*/
+/* =========  FORM SECTION  =========*/
 
 .form-section {
     margin-top: 12px;
@@ -70,6 +68,15 @@ a {
     color: var(--text);
 }
 
+.form-select {
+    height: 58px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    transition: 0.3s;
+    color: var(--text);
+}
+
 textarea.form-control {
     min-height: 160px;
     resize: none;
@@ -77,6 +84,11 @@ textarea.form-control {
 }
 
 .form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+.form-select:focus {
     border-color: #2563eb;
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
 }

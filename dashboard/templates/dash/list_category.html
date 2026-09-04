@@ -67,7 +67,7 @@
               <td>
                 <div class="category-info">
                   <div class="category-icon">
-                    <i class="bi bi-truck"></i>
+                    <i class="{{ category.icon|default:'bi bi-folder' }}" aria-hidden="true"></i>
                   </div>
 
                   <div>
@@ -85,16 +85,16 @@
                 <span class="article-count">{{ category.article_count }} articles</span>
               </td>
 
-              <!--         <td>
+              <!--           <td>
                 <span class="status-badge active">
                   <span></span>
                   Active
                 </span>
-                </td>         -->
+                </td>           -->
 
-              <!--          <td>
+              <!--            <td>
                 <span class="date">12 Août 2026</span>
-              </td>         -->
+              </td>           -->
 
               <td>
                 <div class="category-actions">

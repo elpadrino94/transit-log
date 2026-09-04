@@ -34,6 +34,17 @@
 
               {{ form.description }}
             </div>
+
+            <!-- ICON -->
+            <div class="col-12">
+              <label class="form-label" for="id_icon">Icône de la catégorie</label>
+
+              {{ form.icon }}
+
+              {% if form.icon.errors %}
+                <div class="invalid-feedback d-block">{{ form.icon.errors }}</div>
+              {% endif %}
+            </div>
           </div>
 
           <!-- SEO -->
@@ -78,7 +89,7 @@
 
             <div class="preview-category">
               <div class="preview-icon">
-                <i class="bi bi-truck"></i>
+                <i id="preview-icon-symbol" class="{{ form.icon.value|default:'bi bi-folder' }}"></i>
               </div>
 
               <h3 class="preview-title">{{ category.name }}</h3>
@@ -109,10 +120,12 @@
       const form = document.getElementById('category-form')
       const nameInput = document.getElementById('category-name')
       const descriptionInput = document.getElementById('category-description')
+      const iconInput = document.getElementById('id_icon')
       const titleInput = document.getElementById('meta-title')
       const descInput = document.getElementById('meta-description')
       const previewTitle = document.querySelector('.preview-title')
       const previewDescription = document.querySelector('.preview-description')
+      const previewIcon = document.getElementById('preview-icon-symbol')
       const titleCounter = document.getElementById('title-counter')
       const descriptionCounter = document.getElementById('description-counter')
       const saveButton = document.getElementById('save-category')
@@ -124,6 +137,9 @@
         }
         if (previewDescription && descriptionInput) {
           previewDescription.textContent = descriptionInput.value.trim() || 'Retrouvez tous les articles...'
+        }
+        if (previewIcon && iconInput) {
+          previewIcon.className = iconInput.value || 'bi bi-folder'
         }
       }
     
@@ -149,7 +165,7 @@
     
       // Écouteurs d'événements pour la prévisualisation et la validation
       if (nameInput && descriptionInput) {
-        ;[nameInput, descriptionInput].forEach((field) => {
+        ;[nameInput, descriptionInput, iconInput].filter(Boolean).forEach((field) => {
           field.addEventListener('input', () => {
             updatePreview()
             validateForm()
