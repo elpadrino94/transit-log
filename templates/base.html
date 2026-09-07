@@ -41,20 +41,20 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Transport</a>
+                <a class="nav-link" href="{% url 'post-list' %}">Articles</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Transit Douanier</a>
+                <a class="nav-link" href="#">Actualités</a>
               </li>
 
-              <li class="nav-item">
+              <!--  <li class="nav-item">
                 <a class="nav-link" href="#">Logistique</a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="#">Import / Export</a>
-              </li>
+              </li> -->
 
               <li class="nav-item">
                 <a class="nav-link" href="#">À propos</a>
@@ -111,8 +111,8 @@
               <h5 class="footer-title">Navigation</h5>
 
               <div class="footer-links">
-                <a href="#">Accueil</a>
-                <a href="#">Articles</a>
+                <a href="{% url 'home' %}">Accueil</a>
+                <a href="{% url 'post-list' %}">Articles</a>
                 <a href="#">Catégories</a>
                 <a href="#">Contact</a>
               </div>
@@ -122,10 +122,9 @@
               <h5 class="footer-title">Catégories</h5>
 
               <div class="footer-links">
-                <a href="#">Transport Routier</a>
-                <a href="#">Transport Maritime</a>
-                <a href="#">Transit Douanier</a>
-                <a href="#">Logistique</a>
+                {% for category in categories %}
+                  <a href="{% url 'list-category' category.slug %}">{{ category.name }}</a>
+                {% endfor %}
               </div>
             </div>
 

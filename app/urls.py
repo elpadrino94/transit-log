@@ -6,6 +6,8 @@ from app.views import HomeView, PostDetailView, PostListView
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('post/', PostListView.as_view(), name='post-list'),
-    path('detail/<slug:slug>', PostDetailView.as_view(), name='post-detail')
+    path('detail/<slug:slug>', PostDetailView.as_view(), name='post-detail'),
+    path('category/<slug:category_slug>/', HomeView.as_view(), name='home-category'),
+    path('post/category/<slug:category_slug>/', PostListView.as_view(), name='list-category'),
 ]
 

@@ -20,15 +20,15 @@
           <p>Actualités, conseils et bonnes pratiques pour optimiser vos opérations à l’international et développer une chaîne logistique performante.</p>
 
           <div class="hero-btns">
-            <a href="#" class="btn-main">
+            <a href="{% url 'post-list' %}" class="btn-main">
               <i class="bi bi-book"></i>
               Lire les articles
             </a>
 
-            <a href="#" class="btn-outline-custom">
+            <!-- <a href="#" class="btn-outline-custom">
               <i class="bi bi-grid"></i>
               Explorer les catégories
-            </a>
+            </a> -->
           </div>
         </div>
       </div>
@@ -45,71 +45,20 @@
       </div>
 
       <div class="row g-4">
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="category-card">
-            <div class="category-icon">
-              <i class="bi bi-truck"></i>
-            </div>
+        {% for category in categories %}
+          <div class="col-lg-2 col-md-4 col-6">
+            <a href="{% url 'home-category' category.slug %}" class="text-decoration-none">
+              <div class="category-card">
+                <div class="category-icon">
+                  <i class="{{ category.icon }}" aria-hidden="true"></i>
+                </div>
 
-            <h5>Transport Routier</h5>
-            <p>24 articles</p>
+                <h5>{{ category.name }}</h5>
+                <p>{{ category.post_count }} article{{ category.post_count|pluralize }}</p>
+              </div>
+            </a>
           </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="category-card">
-            <div class="category-icon">
-              <i class="bi bi-water"></i>
-            </div>
-
-            <h5>Transport Maritime</h5>
-            <p>36 articles</p>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="category-card">
-            <div class="category-icon">
-              <i class="bi bi-airplane"></i>
-            </div>
-
-            <h5>Transport Aérien</h5>
-            <p>18 articles</p>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="category-card">
-            <div class="category-icon">
-              <i class="bi bi-file-earmark-check"></i>
-            </div>
-
-            <h5>Transit Douanier</h5>
-            <p>29 articles</p>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="category-card">
-            <div class="category-icon">
-              <i class="bi bi-box-seam"></i>
-            </div>
-
-            <h5>Logistique</h5>
-            <p>22 articles</p>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6">
-          <div class="category-card">
-            <div class="category-icon">
-              <i class="bi bi-globe"></i>
-            </div>
-
-            <h5>Import / Export</h5>
-            <p>31 articles</p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
