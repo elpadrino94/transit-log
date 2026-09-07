@@ -9,10 +9,19 @@ from .forms import AddPostForm, CategoryAddForm
 from django.utils import timezone
 
 
+#=====================================
+# VUE DE PROTECTION DU DASHBOARD
+#=====================================
+class AdminRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
 
-class DashboardView(TemplateView):
+    # Vérifie si l'utilisateur connecté est bien un administrateur
+    def test_func(self):
+        return self.request.user.role == 'admin'
+
+
+class DashboardView(AdminRequiredMixin, TemplateView):
     template_name = 'dash/dashboard.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         now = timezone.now()
@@ -23,7 +32,7 @@ class DashboardView(TemplateView):
 # ============================
 # POSTS LIST VIEW
 # ============================
-class PostsListView(ListView):
+class PostsListView(AdminRequiredMixin, ListView):
     model = Post
     template_name = 'dash/post_list.html'
     context_object_name = 'posts' 
@@ -42,22 +51,28 @@ class PostsListView(ListView):
 # ============================
 # ADD CATEGORY VIEW
 # ============================
-class AddCategoryView(CreateView):
+class AddCategoryView(AdminRequiredMixin, CreateView):
     model = Category
     form_class = CategoryAddForm
     template_name = 'dash/add_category.html'
     success_url = reverse_lazy('categories-list')
 
+    # def test_func(self):
+    #     return (
+    #         self.request.user.is_authenticated
+    #         and getattr(self.request.user, 'role', None) == 'admin'
+    #     )
+
 # ==============================
 # ADD POST VIEW
 # ==============================
-class AddPostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class AddPostView(AdminRequiredMixin, CreateView):
     model = Post
     form_class = AddPostForm
     template_name = 'dash/add_post.html'
     success_url = (reverse_lazy('posts-list'))
 
-    # Vérifie si l'utilisateur connecté est bien un administrateur
+    
     def test_func(self):
         return (
             self.request.user.is_authenticated
@@ -70,10 +85,13 @@ class AddPostView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return super().form_valid(form)
 
 
-class ListCategoriesView(ListView):
+class ListCategoriesView(AdminRequiredMixin, ListView):
     template_name = 'dash/list_category.html'
     context_object_name = 'categories'
     paginate_by = 5
+
+    def test_func(self):
+        return self.request.user.role == 'admin'
 
     def get_queryset(self):
         return Category.objects.annotate(article_count=Count('posts'))
@@ -86,19 +104,14 @@ class ListCategoriesView(ListView):
 #===========================================
 # GESTION DES ACTIONS BOUTONS DE CATEGORIES
 #===========================================
-class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class CategoryUpdateView(AdminRequiredMixin, UpdateView):
     model = Category
     form_class = CategoryAddForm
     template_name = 'dash/add_category.html'
     success_url = reverse_lazy('categories-list')
 
-    def test_func(self):
-        return (
-            self.request.user.is_authenticated
-            and getattr(self.request.user, 'role', None) == 'admin'
-        )
 
-class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class CategoryDeleteView(AdminRequiredMixin, DeleteView):
     model = Category
     template_name = 'dash/category_confirm_delete.html'
     success_url = reverse_lazy('categories-list')
@@ -114,7 +127,7 @@ class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 #===========================================
 # GESTION DES ACTIONS BOUTONS DES ARTICLES
 #===========================================
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PostUpdateView(AdminRequiredMixin, UpdateView):
     model = Post
     form_class = AddPostForm
     template_name = 'dash/add_post.html'
@@ -122,23 +135,19 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
 
-    def test_func(self):
-        return (
-            self.request.user.is_authenticated
-            and getattr(self.request.user, 'role', None) == 'admin'
-        )
+    
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostDeleteView(AdminRequiredMixin, DeleteView):
     model = Post
     template_name = 'dash/post_confirm_delete.html'
     success_url = reverse_lazy('posts-list')
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
 
-    def test_func(self):
-        return (
-            self.request.user.is_authenticated
-            and getattr(self.request.user, 'role', None) == 'admin'
-        )
+    # def test_func(self):
+    #     return (
+    #         self.request.user.is_authenticated
+    #         and getattr(self.request.user, 'role', None) == 'admin'
+    #     )
 
 
