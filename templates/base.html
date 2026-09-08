@@ -24,20 +24,24 @@
     <link rel="stylesheet" href="{% static 'css/post_list.css' %}" />
     <link rel="stylesheet" href="{% static 'css/post_detail.css' %}" />
     <link rel="stylesheet" href="{% static 'css/dash/add_category.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/about.css' %}" />
   </head>
   <body>
     <div class="main-wrapper">
       <!-- NAVBAR -->
       <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
+          <!-- Logo -->
           <a class="navbar-brand" href="{% url 'home' %}">Transit<span>Log</span></a>
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+          <!-- Bouton mobile -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Menu"><i class="bi bi-list"></i></button>
 
-          <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Navigation -->
+          <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="{% url 'home' %}">Accueil</a>
+                <a class="nav-link" href="{% url 'home' %}">Accueil</a>
               </li>
 
               <li class="nav-item">
@@ -48,38 +52,35 @@
                 <a class="nav-link" href="#">Actualités</a>
               </li>
 
-              <!--  <li class="nav-item">
+              <!--     <li class="nav-item">
                 <a class="nav-link" href="#">Logistique</a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="#">Import / Export</a>
-              </li> -->
+              </li>    -->
 
               <li class="nav-item">
-                <a class="nav-link" href="#">À propos</a>
+                <a class="nav-link" href="{% url 'about' %}">À propos</a>
               </li>
             </ul>
 
-            <div class="d-flex align-items-center gap-3">
-              <i class="bi bi-search fs-5"></i>
-
+            <!-- Actions -->
+            <div class="navbar-actions">
               {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}">
                   {% csrf_token %}
-                  <button type="submit" class="btn-subscribe btn-danger">
+                  <button type="submit" class="btn-login">
                     <i class="bi bi-box-arrow-right"></i>
                     Déconnecter
                   </button>
                 </form>
               {% else %}
-                <a class="btn btn-outline-primary" href="{% url 'login' %}">
-                  <i class="bi bi-box-arrow-in-left"></i>
-                  Se connecter
-                </a>
+                <a href="{% url 'login' %}" class="btn-login">Se connecter</a>
+                <a href="{% url 'register' %}" class="btn-register">Créer un compte</a>
               {% endif %}
               {% if user.role == 'admin' %}
-                <a class="btn btn-outline-success" href="{% url 'dashboard-home' %}">
+                <a class="btn-register" href="{% url 'dashboard-home' %}">
                   <i class="bi bi-person-dash-fill"></i>
                   Dashboard
                 </a>

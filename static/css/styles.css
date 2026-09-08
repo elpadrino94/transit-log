@@ -82,6 +82,34 @@ NAVBAR
     background: #e57700;
 }
 
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-login {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 15px;
+}
+
+.btn-register {
+    background: var(--orange);
+    color: white;
+    border-radius: 7px;
+    padding: 9px 17px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.btn-register:hover {
+    background: var(--orange-dark);
+    color: white;
+}
+
 /* =========================
 HERO
 ==========================*/

@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.db.models.aggregates import Count
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, TemplateView
 from app.models import Category, Post
 
 
@@ -73,3 +73,10 @@ class PostDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kargs)
         context['recent_posts'] = Post.objects.filter(status='published').order_by('-published_at')[:3]
         return context
+
+
+#=============================
+# ABOUT VIEW
+#=============================
+class AboutView(TemplateView):
+    template_name = 'blog/about.html'
