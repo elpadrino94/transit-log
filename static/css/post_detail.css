@@ -355,6 +355,191 @@ RELATED POSTS
   }
 
   /* =========================
+COMMENTS
+==========================*/
+
+  .comments-section {
+      margin-top: 70px;
+  }
+
+  .comments-header {
+      margin-bottom: 30px;
+  }
+
+  .comments-eyebrow {
+      display: block;
+      color: var(--secondary);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+  }
+
+  .section-title span {
+      color: var(--muted);
+      font-size: 1rem;
+      vertical-align: middle;
+  }
+
+  .comments-intro {
+      color: var(--muted);
+      margin-bottom: 0;
+  }
+
+  .comment-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 30px;
+      align-items: start;
+  }
+
+  .comment-list,
+  .comment-form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+  }
+
+  .comment-list {
+      padding: 10px 30px;
+  }
+
+  .comment-item {
+      display: flex;
+      gap: 18px;
+      padding: 25px 0;
+      border-bottom: 1px solid #eef2f7;
+  }
+
+  .comment-item:last-child {
+      border-bottom: 0;
+  }
+
+  .comment-avatar {
+      display: flex;
+      flex: 0 0 48px;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #eaf1ff;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 800;
+  }
+
+  .comment-avatar-alt {
+      background: #fff0df;
+      color: #b85b00;
+  }
+
+  .comment-avatar-warm {
+      background: #e6f6ef;
+      color: #16744c;
+  }
+
+  .comment-body {
+      min-width: 0;
+  }
+
+  .comment-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+  }
+
+  .comment-meta h3 {
+      color: var(--primary);
+      font-size: 1rem;
+      font-weight: 800;
+      margin: 0;
+  }
+
+  .comment-meta time {
+      color: var(--muted);
+      font-size: 0.82rem;
+  }
+
+  .comment-body p {
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 10px;
+  }
+
+  .comment-reply {
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0;
+  }
+
+  .comment-reply:hover {
+      color: var(--secondary);
+  }
+
+  .comment-form-card {
+      padding: 30px;
+  }
+
+  .comment-form-card h3 {
+      color: var(--primary);
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+  }
+
+  .comment-form-card > p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+  }
+
+  .comment-form-card label {
+      display: block;
+      color: var(--primary);
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+  }
+
+  .comment-form-card .form-control {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      padding: 12px 14px;
+  }
+
+  .comment-form-card .form-control:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.12);
+  }
+
+  .comment-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+      background: var(--secondary);
+      color: var(--white);
+      font-weight: 800;
+      padding: 14px 18px;
+  }
+
+  .comment-submit:hover {
+      background: #e77800;
+  }
+
+  /* =========================
 NEWSLETTER
 ==========================*/
 
@@ -454,6 +639,15 @@ RESPONSIVE
       .article-content p {
           font-size: 1rem;
           line-height: 1.9;
+      }
+
+      .comment-layout {
+          grid-template-columns: 1fr;
+      }
+
+      .comment-list,
+      .comment-form-card {
+          border-radius: 20px;
       }
 
       .newsletter {
