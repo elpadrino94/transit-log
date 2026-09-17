@@ -1,9 +1,12 @@
 from django.db.models import Q
 from django.db.models.aggregates import Count
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 from django.views.generic import DetailView, ListView, TemplateView
 from app.models import Category, Post
+from comments.forms import CommentForm
+from comments.models import Comment
 
 
 #==========================
@@ -72,7 +75,24 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kargs):
         context = super().get_context_data(**kargs)
         context['recent_posts'] = Post.objects.filter(status='published').order_by('-published_at')[:3]
+        context['comments'] = Comment.objects.filter(post=self.object).order_by('-created_at')
+        context['form'] = CommentForm()
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = self.object
+            comment.user = request.user
+            comment.save()
+            return redirect(reverse('post-detail', kwargs={'slug': self.object.slug}))
+
+        context = self.get_context_data(object=self.object)
+        context['form'] = form
+        return self.render_to_response(context)
 
 
 #=============================

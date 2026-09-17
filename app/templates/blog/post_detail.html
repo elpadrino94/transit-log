@@ -46,19 +46,19 @@
 
                 <div class="article-content">
                   {{ post.content|linebreaks }}
-                  <!--    <p>Dans un environnement économique de plus en plus compétitif, les entreprises cherchent constamment à optimiser leurs coûts logistiques tout en maintenant un haut niveau de qualité de service. Une stratégie logistique efficace peut améliorer la rentabilité, accélérer les livraisons et renforcer la satisfaction client.</p>
+                  <!--           <p>Dans un environnement économique de plus en plus compétitif, les entreprises cherchent constamment à optimiser leurs coûts logistiques tout en maintenant un haut niveau de qualité de service. Une stratégie logistique efficace peut améliorer la rentabilité, accélérer les livraisons et renforcer la satisfaction client.</p>
 
                   <h2>Pourquoi optimiser la chaîne logistique ?</h2>
 
                   <p>La logistique représente une part importante des dépenses opérationnelles d’une entreprise. Entre le transport, le stockage, les formalités douanières et la gestion des flux, les coûts peuvent rapidement augmenter.</p>
 
-                  <p>Optimiser la chaîne logistique permet de réduire les dépenses inutiles, améliorer la productivité des équipes et garantir une meilleure visibilité sur les opérations.</p>    -->
+                  <p>Optimiser la chaîne logistique permet de réduire les dépenses inutiles, améliorer la productivité des équipes et garantir une meilleure visibilité sur les opérations.</p>           -->
 
-                  <!--    <div class="quote-box">
+                  <!--           <div class="quote-box">
                     <p>“Une logistique performante n’est plus seulement un avantage, c’est aujourd’hui un levier stratégique de croissance.”</p>
-                  </div>    -->
+                  </div>           -->
 
-                  <!--    <h2>Les meilleures stratégies de réduction des coûts</h2>
+                  <!--           <h2>Les meilleures stratégies de réduction des coûts</h2>
 
                   <h3>1. Automatiser les processus</h3>
 
@@ -90,7 +90,7 @@
 
                   <h2>Conclusion</h2>
 
-                  <p>Réduire les coûts logistiques sans sacrifier la qualité nécessite une approche stratégique et structurée. L’automatisation, la digitalisation et l’optimisation des processus sont aujourd’hui des leviers incontournables pour rester compétitif sur le marché international.</p>    -->
+                  <p>Réduire les coûts logistiques sans sacrifier la qualité nécessite une approche stratégique et structurée. L’automatisation, la digitalisation et l’optimisation des processus sont aujourd’hui des leviers incontournables pour rester compétitif sur le marché international.</p>           -->
                 </div>
 
                 <!-- SHARE -->
@@ -115,7 +115,7 @@
             <!-- SIDEBAR -->
             <div class="col-lg-4">
               <!-- CATEGORIES -->
-              <!--              <div class="sidebar-card">
+              <!--                     <div class="sidebar-card">
                 <h4 class="sidebar-title">Catégories</h4>
 
                 <div class="category-item">
@@ -142,7 +142,7 @@
                   Import / Export
                   <span>31</span>
                 </div>
-              </div>              -->
+              </div>                     -->
 
               <!-- RECENT POSTS -->
               <div class="sidebar-card">
@@ -256,78 +256,49 @@
             <div class="comments-header">
               <div>
                 <span class="comments-eyebrow">Espace d'échange</span>
-                <h2 id="comments-title" class="section-title mb-2">Commentaires <span>(3)</span></h2>
+                <h2 id="comments-title" class="section-title mb-2">Commentaires <span>({{ comments.count }})</span></h2>
                 <p class="comments-intro">Partagez votre point de vue avec les autres lecteurs.</p>
               </div>
             </div>
 
             <div class="comment-layout">
               <div class="comment-list">
-                <article class="comment-item">
-                  <div class="comment-avatar" aria-hidden="true">KM</div>
+                {% for comment in comments %}
+                  <article class="comment-item">
+                    <div class="comment-avatar" aria-hidden="true">{{ comment.user.full_name|slice:':2'|upper }}</div>
 
-                  <div class="comment-body">
-                    <div class="comment-meta">
-                      <h3>Karim M.</h3>
-                      <time datetime="2026-05-12">12 Mai 2026</time>
+                    <div class="comment-body">
+                      <div class="comment-meta">
+                        <h3>{{ comment.user.full_name }}</h3>
+                        <time datetime="{{ comment.created_at|date:'Y-m-d' }}">{{ comment.created_at|date:'d M Y' }}</time>
+                      </div>
+                      <p>{{ comment.content|linebreaksbr }}</p>
+                      <button type="button" class="comment-reply"><i class="bi bi-reply"></i> Répondre</button>
                     </div>
-                    <p>Un article très utile pour mieux comprendre les enjeux du transit international. Les explications sont claires et concrètes.</p>
-                    <button type="button" class="comment-reply"><i class="bi bi-reply"></i> Répondre</button>
-                  </div>
-                </article>
-
-                <article class="comment-item">
-                  <div class="comment-avatar comment-avatar-alt" aria-hidden="true">AN</div>
-
-                  <div class="comment-body">
-                    <div class="comment-meta">
-                      <h3>Aïcha N.</h3>
-                      <time datetime="2026-05-11">11 Mai 2026</time>
-                    </div>
-                    <p>Merci pour ces conseils. La partie consacrée aux documents nécessaires m'a particulièrement aidée.</p>
-                    <button type="button" class="comment-reply"><i class="bi bi-reply"></i> Répondre</button>
-                  </div>
-                </article>
-
-                <article class="comment-item">
-                  <div class="comment-avatar comment-avatar-warm" aria-hidden="true">SD</div>
-
-                  <div class="comment-body">
-                    <div class="comment-meta">
-                      <h3>Samuel D.</h3>
-                      <time datetime="2026-05-10">10 Mai 2026</time>
-                    </div>
-                    <p>La digitalisation change effectivement la manière de suivre les opérations. Hâte de lire le prochain article.</p>
-                    <button type="button" class="comment-reply"><i class="bi bi-reply"></i> Répondre</button>
-                  </div>
-                </article>
+                  </article>
+                {% empty %}
+                  <p>Aucun commentaire pour le moment. Soyez le premier à réagir.</p>
+                {% endfor %}
               </div>
 
               <!-- FORMULAIRE -->
-
               <div class="comment-form-card">
                 <h3>Laisser un commentaire</h3>
                 <p>Votre adresse email ne sera pas publiée.</p>
 
-                <form>
+                <form method="post">
+                  {% csrf_token %}
                   <div class="row g-3">
-                    <div class="col-md-6">
-                      <label for="comment-name">Nom</label>
-                      <input id="comment-name" type="text" class="form-control" placeholder="Votre nom" />
-                    </div>
-
-                    <div class="col-md-6">
-                      <label for="comment-email">Email</label>
-                      <input id="comment-email" type="email" class="form-control" placeholder="votre@email.com" />
+                    <div class="col-12">
+                      <label for="id_content">Votre commentaire</label>
+                      {{ form.content }}
+                      {% if form.content.errors %}
+                        <div class="text-danger">{{ form.content.errors }}</div>
+                      {% endif %}
                     </div>
 
                     <div class="col-12">
-                      <label for="comment-message">Votre commentaire</label>
-                      <textarea id="comment-message" class="form-control" rows="5" placeholder="Écrivez votre commentaire..."></textarea>
-                    </div>
-
-                    <div class="col-12">
-                      <button type="button" class="comment-submit">Publier le commentaire <i class="bi bi-arrow-right"></i></button>
+                      <button type="submit" class="comment-submit">Publier le commentaire <i class="bi bi-arrow-right"></i></button>
                     </div>
                   </div>
                 </form>

@@ -26,7 +26,7 @@ class DashboardView(AdminRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         now = timezone.now()
         context['published_count'] = Post.objects.filter(status='published', published_at__lte=now).count()
-        return context
+        return context 
 
 
 # ============================
@@ -45,6 +45,10 @@ class PostsListView(AdminRequiredMixin, ListView):
         context['published_count'] = Post.objects.filter(status='published', published_at__lte=now).count()
         context['scheduled_count'] = Post.objects.filter(status='published', published_at__gt=now).count()
         context['drafts_count'] = Post.objects.filter(status='draft').count()
+
+        # Filtre par catégories
+        context['categories'] = Category.objects.filter().distinct()
+        context['current_category'] = self.kwargs.get('category_slug')
         return context
 
 
