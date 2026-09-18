@@ -5,6 +5,7 @@ from django.db.models import Count
 
 from django.views.generic import CreateView, DeleteView, TemplateView, ListView, UpdateView
 from app.models import Category, Post
+from comments.models import Comment
 from .forms import AddPostForm, CategoryAddForm
 from django.utils import timezone
 
@@ -26,6 +27,7 @@ class DashboardView(AdminRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         now = timezone.now()
         context['published_count'] = Post.objects.filter(status='published', published_at__lte=now).count()
+        context['comments'] = Comment.objects.filter().order_by('-created_at')[:3]
         return context 
 
 
@@ -61,11 +63,7 @@ class AddCategoryView(AdminRequiredMixin, CreateView):
     template_name = 'dash/add_category.html'
     success_url = reverse_lazy('categories-list')
 
-    # def test_func(self):
-    #     return (
-    #         self.request.user.is_authenticated
-    #         and getattr(self.request.user, 'role', None) == 'admin'
-    #     )
+ 
 
 # ==============================
 # ADD POST VIEW
@@ -153,5 +151,10 @@ class PostDeleteView(AdminRequiredMixin, DeleteView):
     #         self.request.user.is_authenticated
     #         and getattr(self.request.user, 'role', None) == 'admin'
     #     )
+
+class SettingView(AdminRequiredMixin, TemplateView):
+    template_name = 'dash/settings.html'
+
+    
 
 

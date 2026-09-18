@@ -1,0 +1,334 @@
+{% extends 'dash_base.html' %}
+
+{% block title %}
+  Settings
+{% endblock %}
+
+{% block content %}
+  <div class="settings-page">
+    <div class="container-fluid">
+      <div class="row">
+        <!--       =================================================
+                 MAIN CONTENT
+            ==================================================       -->
+
+        <main class="col-lg-9 col-xl-10 settings-content">
+          <!-- HEADER -->
+          <div class="settings-header">
+            <div>
+              <span class="page-label">COMPTE</span>
+
+              <h1>Paramètres</h1>
+
+              <p>Gérez vos informations personnelles et les préférences de votre compte.</p>
+            </div>
+
+            <!-- User -->
+            <div class="header-user">
+              <div class="header-avatar">
+                <img src="https://i.pravatar.cc/100?img=12" alt="Photo de profil" />
+              </div>
+
+              <div>
+                <strong>{{ user.full_name }}</strong>
+
+                <small>Administrateur</small>
+              </div>
+            </div>
+          </div>
+
+          <!--       =================================================
+                     PROFIL
+                ==================================================       -->
+
+          <section class="settings-card">
+            <div class="card-heading">
+              <div>
+                <h2>Profil</h2>
+
+                <p>Gérez votre photo et vos informations personnelles.</p>
+              </div>
+
+              <div class="heading-icon">
+                <i class="bi bi-person"></i>
+              </div>
+            </div>
+
+            <!-- PHOTO -->
+            <div class="profile-photo-section">
+              <div class="profile-photo">
+                <img src="https://i.pravatar.cc/200?img=12" alt="Photo de profil" />
+
+                <button type="button" class="photo-edit-button" title="Modifier la photo"><i class="bi bi-camera"></i></button>
+              </div>
+
+              <div class="photo-info">
+                <h5>Photo de profil</h5>
+
+                <p>Ajoutez une photo pour personnaliser votre profil.</p>
+
+                <div class="photo-actions">
+                  <label for="profilePhoto" class="btn-upload">
+                    <i class="bi bi-upload"></i>
+
+                    Ajouter une photo
+                  </label>
+
+                  <input type="file" id="profilePhoto" accept="image/*" hidden />
+
+                  <button type="button" class="btn-remove-photo">Supprimer</button>
+                </div>
+
+                <small>JPG, PNG ou WEBP. Taille maximale : 2 MB.</small>
+              </div>
+            </div>
+
+            <hr />
+
+            <!-- INFORMATIONS -->
+            <form>
+              <div class="row g-4">
+                <!-- Nom -->
+                <div class="col-md-6">
+                  <label for="firstName" class="form-label">Prénom</label>
+
+                  <input type="text" id="firstName" class="form-control" value="Jean" />
+                </div>
+
+                <!-- Nom -->
+                <div class="col-md-6">
+                  <label for="lastName" class="form-label">Nom</label>
+
+                  <input type="text" id="lastName" class="form-control" value="Dupont" />
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Adresse e-mail</label>
+
+                  <input type="email" id="email" class="form-control" value="jean@example.com" />
+                </div>
+
+                <!-- Téléphone -->
+                <div class="col-md-6">
+                  <label for="phone" class="form-label">Téléphone</label>
+
+                  <input type="tel" id="phone" class="form-control" placeholder="+228 XX XX XX XX" />
+                </div>
+
+                <!-- Bio -->
+                <div class="col-12">
+                  <label for="bio" class="form-label">Biographie</label>
+
+                  <textarea id="bio" class="form-control" rows="4" placeholder="Présentez-vous en quelques mots...">Professionnel dans le domaine du transport et de la logistique.</textarea>
+
+                  <small class="form-help">Une courte présentation visible sur votre profil.</small>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn-cancel">Annuler</button>
+
+                <button type="submit" class="btn-save">
+                  <i class="bi bi-check-lg"></i>
+
+                  Enregistrer les modifications
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!--       =================================================
+                     MOT DE PASSE
+                ==================================================       -->
+
+          <section class="settings-card">
+            <div class="card-heading">
+              <div>
+                <h2>Sécurité</h2>
+
+                <p>Modifiez votre mot de passe pour protéger votre compte.</p>
+              </div>
+
+              <div class="heading-icon">
+                <i class="bi bi-shield-lock"></i>
+              </div>
+            </div>
+
+            <form>
+              <div class="row g-4">
+                <!-- Ancien mot de passe -->
+                <div class="col-12">
+                  <label for="currentPassword" class="form-label">Mot de passe actuel</label>
+
+                  <input type="password" id="currentPassword" class="form-control" placeholder="Entrez votre mot de passe actuel" />
+                </div>
+
+                <!-- Nouveau -->
+                <div class="col-md-6">
+                  <label for="newPassword" class="form-label">Nouveau mot de passe</label>
+
+                  <input type="password" id="newPassword" class="form-control" placeholder="Nouveau mot de passe" />
+
+                  <small class="form-help">Utilisez au minimum 8 caractères.</small>
+                </div>
+
+                <!-- Confirmation -->
+                <div class="col-md-6">
+                  <label for="confirmPassword" class="form-label">Confirmer le mot de passe</label>
+
+                  <input type="password" id="confirmPassword" class="form-control" placeholder="Confirmez votre mot de passe" />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-save">
+                  <i class="bi bi-lock"></i>
+
+                  Modifier le mot de passe
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!--       =================================================
+                     NOTIFICATIONS
+                ==================================================       -->
+
+          <section class="settings-card">
+            <div class="card-heading">
+              <div>
+                <h2>Notifications</h2>
+
+                <p>Choisissez les notifications que vous souhaitez recevoir.</p>
+              </div>
+
+              <div class="heading-icon">
+                <i class="bi bi-bell"></i>
+              </div>
+            </div>
+
+            <!-- Notification -->
+            <div class="notification-option">
+              <div class="notification-icon">
+                <i class="bi bi-chat-left-text"></i>
+              </div>
+
+              <div class="notification-text">
+                <strong>Nouveaux commentaires</strong>
+
+                <span>Recevoir un email lorsqu'un lecteur commente un article.</span>
+              </div>
+
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" checked />
+              </div>
+            </div>
+
+            <!-- Notification -->
+            <div class="notification-option">
+              <div class="notification-icon">
+                <i class="bi bi-envelope"></i>
+              </div>
+
+              <div class="notification-text">
+                <strong>Newsletter</strong>
+
+                <span>Recevoir les actualités de TransitLog par email.</span>
+              </div>
+
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" checked />
+              </div>
+            </div>
+
+            <!-- Notification -->
+            <div class="notification-option">
+              <div class="notification-icon">
+                <i class="bi bi-megaphone"></i>
+              </div>
+
+              <div class="notification-text">
+                <strong>Actualités importantes</strong>
+
+                <span>Recevoir les informations importantes concernant votre compte.</span>
+              </div>
+
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" checked />
+              </div>
+            </div>
+          </section>
+
+          <!--       =================================================
+                     PREFERENCES
+                ==================================================       -->
+
+          <section class="settings-card">
+            <div class="card-heading">
+              <div>
+                <h2>Préférences</h2>
+
+                <p>Configurez vos préférences générales.</p>
+              </div>
+
+              <div class="heading-icon">
+                <i class="bi bi-sliders"></i>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <!-- Langue -->
+              <div class="col-md-6">
+                <label class="form-label">Langue</label>
+
+                <select class="form-select">
+                  <option selected>Français</option>
+
+                  <option>English</option>
+                </select>
+              </div>
+
+              <!-- Fuseau -->
+              <div class="col-md-6">
+                <label class="form-label">Fuseau horaire</label>
+
+                <select class="form-select">
+                  <option selected>Africa/Lome (GMT+0)</option>
+
+                  <option>Europe/Paris (GMT+1)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-save">
+                <i class="bi bi-check-lg"></i>
+
+                Enregistrer
+              </button>
+            </div>
+          </section>
+
+          <!--       =================================================
+                     ZONE DANGEREUSE
+                ==================================================       -->
+
+          <section class="danger-card">
+            <div class="danger-icon">
+              <i class="bi bi-exclamation-triangle"></i>
+            </div>
+
+            <div class="danger-content">
+              <h2>Zone dangereuse</h2>
+
+              <p>La suppression de votre compte est définitive. Toutes vos données associées pourront être supprimées.</p>
+            </div>
+
+            <button type="button" class="btn-delete-account">Supprimer mon compte</button>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+{% endblock %}

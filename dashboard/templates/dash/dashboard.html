@@ -1,4 +1,5 @@
 {% extends 'dash_base.html' %}
+{% load static %}
 
 {% block title %}
 
@@ -218,7 +219,7 @@
       </div>
 
       <!-- QUICK ACTION -->
-      <!-- <div class="col-xl-2">
+      <!--                  <div class="col-xl-2">
         <div class="content-card">
           <h3 class="section-title mb-4">Actions rapides</h3>
 
@@ -232,7 +233,7 @@
 
           <button class="quick-btn">Newsletter</button>
         </div>
-      </div> -->
+      </div>                  -->
 
       <!-- COMMENTS -->
       <div class="col-xl-3">
@@ -244,50 +245,28 @@
           </div>
 
           <!-- COMMENT -->
-          <div class="comment-item">
-            <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="" />
+          {% for comment in comments %}
+            <div class="comment-item">
+              {% if comment.user.avatar %}
+                <img src="{{ comment.user.avatar.url }}" alt="" />
+              {% else %}
+                <img src="{% static 'images/profile.png' %}" alt="Profile" />
+              {% endif %}
 
-            <div>
-              <h6 class="fw-bold mb-1">Jean Dupont</h6>
+              <div>
+                <h6 class="fw-bold mb-1">{{ comment.user.full_name|title }}</h6>
 
-              <p class="text-secondary mb-1">Très bon article sur le transport maritime !</p>
+                <p class="text-secondary mb-1">{{ comment.content|truncatechars:50 }}</p>
 
-              <small class="text-secondary">Il y a 2 heures</small>
+                <small class="text-secondary">{{ comment.created_at|date:'d/m/Y H:i' }}</small>
+              </div>
             </div>
-          </div>
-
-          <!-- COMMENT -->
-          <div class="comment-item">
-            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="" />
-
-            <div>
-              <h6 class="fw-bold mb-1">Marie Laurent</h6>
-
-              <p class="text-secondary mb-1">Merci pour ces informations utiles 👍</p>
-
-              <small class="text-secondary">Il y a 5 heures</small>
-            </div>
-          </div>
-
-          <!-- COMMENT -->
-          <div class="comment-item">
-            <img src="https://randomuser.me/api/portraits/women/20.jpg" alt="" />
-
-            <div>
-              <h6 class="fw-bold mb-1">Sophie Martin</h6>
-
-              <p class="text-secondary mb-1">Article intéressant et bien détaillé.</p>
-
-              <small class="text-secondary">Il y a 1 jour</small>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
 
-    <!--      
-           | ARTICLES TABLE 
-           |     -->
+    <!-- | ARTICLES TABLE | -->
 
     <div class="row g-4">
       <div class="col-xl-8">

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from dashboard.views import AddCategoryView, AddPostView, CategoryDeleteView, CategoryUpdateView, DashboardView, ListCategoriesView, PostsListView, PostUpdateView, PostDeleteView  
+from dashboard.views import AddCategoryView, AddPostView, CategoryDeleteView, CategoryUpdateView, DashboardView, ListCategoriesView, PostsListView, PostUpdateView, PostDeleteView, SettingView  
 
 
 
@@ -14,4 +14,5 @@ urlpatterns = [
     path('category/<str:slug>/delete/', CategoryDeleteView.as_view(), name='delete-category'),
     path('post/<str:slug>/update/', PostUpdateView.as_view(), name='update-post'),
     path('post/<str:slug>/delete/', PostDeleteView.as_view(), name='delete-post'),
+    path('settings/', SettingView.as_view(), name='settings'),
 ]
