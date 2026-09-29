@@ -9,6 +9,7 @@ from comments.forms import CommentForm
 from comments.models import Comment
 
 
+
 #==========================
 # HOME VIEW
 #==========================

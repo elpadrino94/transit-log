@@ -53,7 +53,7 @@
             Catégories
           </a>
 
-          <a href="#" class="sidebar-link">
+          <a href="{% url 'comment-list' %}" class="sidebar-link">
             <i class="bi bi-chat-left-text"></i>
             Commentaires
           </a>
@@ -108,7 +108,7 @@
         <!-- USER -->
         <div class="sidebar-user d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center gap-3">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
+            <img src="{{ user.avatar.url }}" alt="" />
 
             <div>
               <h6 class="mb-1 fw-bold">{{ user.full_name }}</h6>

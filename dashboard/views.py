@@ -28,6 +28,7 @@ class DashboardView(AdminRequiredMixin, TemplateView):
         now = timezone.now()
         context['published_count'] = Post.objects.filter(status='published', published_at__lte=now).count()
         context['comments'] = Comment.objects.filter().order_by('-created_at')[:3]
+        context['comments_count'] = Comment.objects.filter().count
         return context 
 
 
@@ -153,7 +154,16 @@ class PostDeleteView(AdminRequiredMixin, DeleteView):
     #     )
 
 class SettingView(AdminRequiredMixin, TemplateView):
-    template_name = 'dash/settings.html'
+    template_name = 'settings/settings.html'
+
+
+# ============================
+# POSTS LIST VIEW
+# ============================
+class CommentListView(AdminRequiredMixin, ListView):
+    model = Comment 
+    template_name = 'dash/comment.html'
+    context_object_name = 'comments'
 
     
 

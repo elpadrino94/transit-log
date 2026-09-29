@@ -1,0 +1,15 @@
+{% extends 'dash_base.html' %}
+
+{% block title %}
+  List comments
+{% endblock %}
+
+{% block content %}
+  <h1>Liste des commentaires</h1>
+  {% for comment in comments %}
+    <h2>{{ comment.post.title }}</h2>
+    <h3>{{ comment.user.full_name }}</h3>
+    <p>{{ comment.content }}</p>
+    <p>{{ comment.created_at }}</p>
+  {% endfor %}
+{% endblock %}

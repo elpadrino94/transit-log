@@ -8,9 +8,9 @@
   <div class="settings-page">
     <div class="container-fluid">
       <div class="row">
-        <!--         =================================================
+        <!--          =================================================
                  MAIN CONTENT
-            ==================================================         -->
+            ==================================================          -->
 
         <main class="col-lg-9 col-xl-10 settings-content">
           <!-- HEADER -->
@@ -25,7 +25,13 @@
 
             <!-- User -->
             <div class="header-user">
-              <div class="header-avatar">{{ user.avatar.url }}</div>
+              <div class="header-avatar">
+                {% if user.avatar %}
+                  <img src="{{ user.avatar.url }}" alt="{{ user.full_name|default:'Avatar utilisateur' }}" />
+                {% else %}
+                  <img src="https://i.pravatar.cc/200?img=12" alt="Avatar par défaut" />
+                {% endif %}
+              </div>
 
               <div>
                 <strong>{{ user.full_name|title }}</strong>
@@ -35,9 +41,9 @@
             </div>
           </div>
 
-          <!--         =================================================
+          <!--          =================================================
                      PROFIL
-                ==================================================         -->
+                ==================================================          -->
 
           <section class="settings-card">
             <div class="card-heading">
@@ -55,7 +61,11 @@
             <!-- PHOTO -->
             <div class="profile-photo-section">
               <div class="profile-photo">
-                <img src="https://i.pravatar.cc/200?img=12" alt="Photo de profil" />
+                {% if user.avatar %}
+                  <img src="{{ user.avatar.url }}" alt="Photo de profil" />
+                {% else %}
+                  <img src="https://i.pravatar.cc/200?img=12" alt="Photo de profil par défaut" />
+                {% endif %}
 
                 <button type="button" class="photo-edit-button" title="Modifier la photo"><i class="bi bi-camera"></i></button>
               </div>
@@ -136,9 +146,9 @@
             </form>
           </section>
 
-          <!--         =================================================
+          <!--          =================================================
                      MOT DE PASSE
-                ==================================================         -->
+                ==================================================          -->
 
           <section class="settings-card">
             <div class="card-heading">
@@ -189,9 +199,9 @@
             </form>
           </section>
 
-          <!--         =================================================
+          <!--          =================================================
                      NOTIFICATIONS
-                ==================================================         -->
+                ==================================================          -->
 
           <section class="settings-card">
             <div class="card-heading">
@@ -258,9 +268,9 @@
             </div>
           </section>
 
-          <!--         =================================================
+          <!--          =================================================
                      PREFERENCES
-                ==================================================         -->
+                ==================================================          -->
 
           <section class="settings-card">
             <div class="card-heading">
@@ -308,9 +318,9 @@
             </div>
           </section>
 
-          <!--         =================================================
+          <!--          =================================================
                      ZONE DANGEREUSE
-                ==================================================         -->
+                ==================================================          -->
 
           <section class="danger-card">
             <div class="danger-icon">
