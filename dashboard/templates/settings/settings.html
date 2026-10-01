@@ -8,9 +8,7 @@
   <div class="settings-page">
     <div class="container-fluid">
       <div class="row">
-        <!--          =================================================
-                 MAIN CONTENT
-            ==================================================          -->
+        <!-- ================== MAIN CONTENT ==================== -->
 
         <main class="col-lg-9 col-xl-10 settings-content">
           <!-- HEADER -->
@@ -41,9 +39,7 @@
             </div>
           </div>
 
-          <!--          =================================================
-                     PROFIL
-                ==================================================          -->
+          <!-- ============== PROFIL ================= -->
 
           <section class="settings-card">
             <div class="card-heading">
@@ -71,7 +67,7 @@
               </div>
 
               <div class="photo-info">
-                <h5>Photo de profil</h5>
+                <h5>{{ user.full_name|title }}</h5>
 
                 <p>Ajoutez une photo pour personnaliser votre profil.</p>
 
@@ -94,28 +90,29 @@
             <hr />
 
             <!-- INFORMATIONS -->
-            <form>
+            <form method="post">
+              {% csrf_token %}
               <div class="row g-4">
                 <!-- Nom -->
                 <div class="col-md-6">
-                  <label for="firstName" class="form-label">Prénom</label>
+                  <label for="firstName" class="form-label">Nom complet</label>
 
-                  <input type="text" id="firstName" class="form-control" value="Jean" />
+                  <input type="text" id="firstName" class="form-control" placeholder="Jean Dupont" required />
                 </div>
 
                 <!-- Nom -->
-                <div class="col-md-6">
+                <!--       <div class="col-md-6">
                   <label for="lastName" class="form-label">Nom</label>
 
-                  <input type="text" id="lastName" class="form-control" value="Dupont" />
-                </div>
+                   <input type="text" id="lastName" class="form-control" value="Dupont" /> 
+                </div>       -->
 
                 <!-- Email -->
-                <div class="col-md-6">
+                <!--    <div class="col-md-6">
                   <label for="email" class="form-label">Adresse e-mail</label>
 
-                  <input type="email" id="email" class="form-control" value="jean@example.com" />
-                </div>
+                  <input type="email" id="email" class="form-control" placeholder="jean@example.com" required />
+                </div>    -->
 
                 <!-- Téléphone -->
                 <div class="col-md-6">
@@ -146,9 +143,7 @@
             </form>
           </section>
 
-          <!--          =================================================
-                     MOT DE PASSE
-                ==================================================          -->
+          <!-- ================= MOT DE PASSE ================ -->
 
           <section class="settings-card">
             <div class="card-heading">
@@ -199,9 +194,7 @@
             </form>
           </section>
 
-          <!--          =================================================
-                     NOTIFICATIONS
-                ==================================================          -->
+          <!-- =================== NOTIFICATIONS ================= -->
 
           <section class="settings-card">
             <div class="card-heading">
@@ -268,9 +261,7 @@
             </div>
           </section>
 
-          <!--          =================================================
-                     PREFERENCES
-                ==================================================          -->
+          <!-- ==================== PREFERENCES =================== -->
 
           <section class="settings-card">
             <div class="card-heading">
@@ -318,9 +309,7 @@
             </div>
           </section>
 
-          <!--          =================================================
-                     ZONE DANGEREUSE
-                ==================================================          -->
+          <!-- ======================= ZONE DANGEREUSE =================== -->
 
           <section class="danger-card">
             <div class="danger-icon">

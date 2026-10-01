@@ -157,6 +157,10 @@ class SettingView(AdminRequiredMixin, TemplateView):
     template_name = 'settings/settings.html'
 
 
+class SettingsUserView(LoginRequiredMixin, TemplateView):
+    template_name = 'settings/user_settings.html'
+
+
 # ============================
 # POSTS LIST VIEW
 # ============================
