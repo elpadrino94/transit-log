@@ -1,9 +1,11 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Count
 
 from django.views.generic import CreateView, DeleteView, TemplateView, ListView, UpdateView
+from account.forms import ProfileUpdateForm
 from app.models import Category, Post
 from comments.models import Comment
 from .forms import AddPostForm, CategoryAddForm
@@ -157,8 +159,17 @@ class SettingView(AdminRequiredMixin, TemplateView):
     template_name = 'settings/settings.html'
 
 
-class SettingsUserView(LoginRequiredMixin, TemplateView):
+class SettingsUserView(LoginRequiredMixin, UpdateView):
+    form_class = ProfileUpdateForm
     template_name = 'settings/user_settings.html'
+    success_url = reverse_lazy("/")
+
+    def get_object(self, queryset=None):
+        return self.request.user 
+
+    def form_valid(self, form):
+        messages.success(self.request, "Pofile modifié avec success")
+        return super().form_valid(form)
 
 
 # ============================

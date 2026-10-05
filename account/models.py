@@ -1,6 +1,9 @@
 from django.db import models
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+
+from config.settings import AUTH_USER_MODEL
 
 # Create your models here.
 
@@ -42,12 +45,24 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+    
 
 class Profile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     phone_number = models.CharField(max_length=20)
     bio = models.TextField(max_length=80)
 
     def __str__(self):
-        return self.user
+        return f"Profil de {self.user.email}"
+
+
+# Signal pour créer/mettre à jour automatiquement le profil
+@receiver(post_save, sender=AUTH_USER_MODEL)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    else:
+        # Sécurité : crée le profil s'il n'existe pas encore, sinon le récupère
+        profile, _ = Profile.objects.get_or_create(user=instance)
+        instance.profile.save()
     

@@ -20,16 +20,12 @@
   </head>
 
   <body>
-    <!--      =========================================================
-     PAGE
-=========================================================      -->
+    <!-- ========================== PAGE ========================= -->
 
     <div class="settings-page">
       <div class="container-fluid">
         <div class="row">
-          <!--      =================================================
-                 SIDEBAR
-            ==================================================      -->
+          <!-- ======================== SIDEBAR ==================== -->
 
           <aside class="col-lg-3 col-xl-2 settings-sidebar">
             <!-- Logo -->
@@ -38,7 +34,7 @@
             </div>
 
             <!-- Navigation -->
-            <!--  <nav class="settings-nav">
+            <!--                <nav class="settings-nav">
               <a href="#" class="nav-item">
                 <i class="bi bi-grid-1x2"></i>
 
@@ -80,7 +76,7 @@
 
                 <span>Paramètres</span>
               </a>
-            </nav>  -->
+            </nav>                -->
 
             <!-- Bottom -->
             <div class="sidebar-bottom">
@@ -92,9 +88,7 @@
             </div>
           </aside>
 
-          <!--      =================================================
-                 MAIN CONTENT
-            ==================================================      -->
+          <!-- ===================== MAIN CONTENT ==================== -->
 
           <main class="col-lg-9 col-xl-10 settings-content">
             <!-- HEADER -->
@@ -110,7 +104,11 @@
               <!-- User -->
               <div class="header-user">
                 <div class="header-avatar">
-                  <img src="{{ user.avatar.url }}" alt="Photo de profil" />
+                  {% if user.avatar %}
+                    <img src="{{ user.avatar.url }}" alt="Photo de profil" />
+                  {% else %}
+                    <img src="https://i.pravatar.cc/200?img=12" alt="Photo de profil par défaut" />
+                  {% endif %}
                 </div>
 
                 <div>
@@ -121,9 +119,7 @@
               </div>
             </div>
 
-            <!--      =================================================
-                     PROFIL
-                ==================================================      -->
+            <!-- =================== PROFIL ==================== -->
 
             <section class="settings-card">
               <div class="card-heading">
@@ -141,7 +137,11 @@
               <!-- PHOTO -->
               <div class="profile-photo-section">
                 <div class="profile-photo">
-                  <img src="{{ user.avatar.url }}" alt="Photo de profil" />
+                  {% if user.avatar %}
+                    <img src="{{ user.avatar.url }}" alt="Photo de profil" />
+                  {% else %}
+                    <img src="https://i.pravatar.cc/200?img=12" alt="Photo de profil par défaut" />
+                  {% endif %}
 
                   <button type="button" class="photo-edit-button" title="Modifier la photo"><i class="bi bi-camera"></i></button>
                 </div>
@@ -172,39 +172,33 @@
               <!-- INFORMATIONS -->
               <form>
                 <div class="row g-4">
-                  <!-- Nom -->
+                  <!-- Nom complet -->
                   <div class="col-md-6">
-                    <label for="firstName" class="form-label">Prénom</label>
+                    <label for="fullname" class="form-label">Nom complet</label>
+                    {{ form.full_name }}
 
-                    <input type="text" id="firstName" class="form-control" value="Jean" />
-                  </div>
-
-                  <!-- Nom -->
-                  <div class="col-md-6">
-                    <label for="lastName" class="form-label">Nom</label>
-
-                    <input type="text" id="lastName" class="form-control" value="Dupont" />
+                    <input type="text" id="fullname" class="form-control" value="{{ user.full_name }}" />
                   </div>
 
                   <!-- Email -->
                   <div class="col-md-6">
                     <label for="email" class="form-label">Adresse e-mail</label>
 
-                    <input type="email" id="email" class="form-control" value="jean@example.com" />
+                    <input type="email" id="email" class="form-control" value="{{ user.email }}" disabled />
                   </div>
 
                   <!-- Téléphone -->
                   <div class="col-md-6">
                     <label for="phone" class="form-label">Téléphone</label>
 
-                    <input type="tel" id="phone" class="form-control" placeholder="+228 XX XX XX XX" />
+                    {{ form.phone_number }}
                   </div>
 
                   <!-- Bio -->
                   <div class="col-12">
                     <label for="bio" class="form-label">Biographie</label>
 
-                    <textarea id="bio" class="form-control" rows="4" placeholder="Présentez-vous en quelques mots...">Professionnel dans le domaine du transport et de la logistique.</textarea>
+                    {{ form.bio }}
 
                     <small class="form-help">Une courte présentation visible sur votre profil.</small>
                   </div>
@@ -222,9 +216,9 @@
               </form>
             </section>
 
-            <!--      =================================================
+            <!--                    =================================================
                      MOT DE PASSE
-                ==================================================      -->
+                ==================================================                    -->
 
             <section class="settings-card">
               <div class="card-heading">
@@ -275,9 +269,9 @@
               </form>
             </section>
 
-            <!--      =================================================
+            <!--                    =================================================
                      NOTIFICATIONS
-                ==================================================      -->
+                ==================================================                    -->
 
             <section class="settings-card">
               <div class="card-heading">
@@ -344,9 +338,9 @@
               </div>
             </section>
 
-            <!--      =================================================
+            <!--                    =================================================
                      PREFERENCES
-                ==================================================      -->
+                ==================================================                    -->
 
             <section class="settings-card">
               <div class="card-heading">
@@ -394,9 +388,9 @@
               </div>
             </section>
 
-            <!--      =================================================
+            <!--                    =================================================
                      ZONE DANGEREUSE
-                ==================================================      -->
+                ==================================================                    -->
 
             <section class="danger-card">
               <div class="danger-icon">
@@ -412,9 +406,9 @@
               <button type="button" class="btn-delete-account">Supprimer mon compte</button>
             </section>
 
-            <!--      =================================================
+            <!--                    =================================================
                      FOOTER
-                ==================================================      -->
+                ==================================================                    -->
 
             <footer class="settings-footer">
               <span>© 2026 TransitLog. Tous droits réservés.</span>

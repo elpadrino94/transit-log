@@ -88,6 +88,42 @@ NAVBAR
     gap: 10px;
 }
 
+.account-menu-toggle {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--primary);
+    font-size: 1.35rem;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.account-menu-toggle:hover,
+.account-menu-toggle:focus-visible {
+    border-color: var(--secondary);
+    background: var(--light);
+    color: var(--secondary);
+}
+
+.account-menu .dropdown-menu {
+    min-width: 190px;
+    margin-top: 8px;
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+.account-menu form {
+    margin: 0;
+}
+
+.account-menu form .dropdown-item {
+    width: 100%;
+    text-align: left;
+}
+
 .btn-login {
     color: var(--primary);
     font-size: 13px;

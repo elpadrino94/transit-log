@@ -52,13 +52,13 @@
                 <a class="nav-link" href="#">Actualités</a>
               </li>
 
-              <!--     <li class="nav-item">
+              <!--      <li class="nav-item">
                 <a class="nav-link" href="#">Logistique</a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="#">Import / Export</a>
-              </li>    -->
+              </li>     -->
 
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">À propos</a>
@@ -68,22 +68,28 @@
             <!-- Actions -->
             <div class="navbar-actions">
               {% if user.is_authenticated %}
-                <form method="post" action="{% url 'logout' %}">
-                  {% csrf_token %}
-                  <button type="submit" class="btn-login">
-                    <i class="bi bi-box-arrow-right"></i>
-                    Déconnecter
-                  </button>
-                </form>
+                <div class="dropdown account-menu">
+                  <button class="account-menu-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Menu du compte"><i class="bi bi-person" aria-hidden="true"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="{% url 'user-settings' %}">Profil</a>
+                    </li>
+                    {% if user.role == 'admin' %}
+                      <li>
+                        <a class="dropdown-item" href="{% url 'dashboard-home' %}">Dashboard</a>
+                      </li>
+                    {% endif %}
+                    <li>
+                      <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="dropdown-item">Déconnecter</button>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
               {% else %}
                 <a href="{% url 'login' %}" class="btn-login">Se connecter</a>
                 <a href="{% url 'register' %}" class="btn-register">Créer un compte</a>
-              {% endif %}
-              {% if user.role == 'admin' %}
-                <a class="btn-register" href="{% url 'dashboard-home' %}">
-                  <i class="bi bi-person-dash-fill"></i>
-                  Dashboard
-                </a>
               {% endif %}
             </div>
           </div>

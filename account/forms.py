@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from account.models import CustomUser
+from account.models import CustomUser, Profile
 
 
 
@@ -30,4 +30,14 @@ class CustomUserCreationForm(UserCreationForm):
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control form-control-custom', 'placeholder': 'Email'}),
             'full_name': forms.TextInput(attrs={'class': 'form-control form-control-custom', 'placeholder': 'Nom complet'}),
+        }
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile 
+        fields = ['phone_number', 'bio',]
+        widgets = {
+            
+            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '+228 90 xx xx xx'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Entrez votre bio', 'row': 4})
         }

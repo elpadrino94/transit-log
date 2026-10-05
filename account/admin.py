@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from account.models import CustomUser
+from account.models import CustomUser, Profile
 
 # Register your models here.
 class CustomUserAdmin(admin.ModelAdmin):
@@ -9,3 +9,5 @@ class CustomUserAdmin(admin.ModelAdmin):
     list_filter = ('is_staff', 'is_active')
 
 admin.site.register(CustomUser, CustomUserAdmin)
+
+admin.site.register(Profile)
