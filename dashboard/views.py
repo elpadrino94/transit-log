@@ -162,14 +162,20 @@ class SettingView(AdminRequiredMixin, TemplateView):
 class SettingsUserView(LoginRequiredMixin, UpdateView):
     form_class = ProfileUpdateForm
     template_name = 'settings/user_settings.html'
-    success_url = reverse_lazy("/")
+    success_url = reverse_lazy("user-settings")
 
     def get_object(self, queryset=None):
-        return self.request.user 
+        return self.request.user.profile 
 
     def form_valid(self, form):
         messages.success(self.request, "Pofile modifié avec success")
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print("FILES:", self.request.FILES)
+        print("ERRORS:", form.errors.as_json())
+        messages.error(self.request, "Veuillez corriger les erreurs")
+        return super().form_invalid(form)
 
 
 # ============================

@@ -49,8 +49,8 @@ class CustomUser(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
-    phone_number = models.CharField(max_length=20)
-    bio = models.TextField(max_length=80)
+    phone_number = models.CharField(max_length=20, blank=True)
+    bio = models.TextField(max_length=80, blank=True)
 
     def __str__(self):
         return f"Profil de {self.user.email}"
