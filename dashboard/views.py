@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Count
 
 from django.views.generic import CreateView, DeleteView, TemplateView, ListView, UpdateView
-from account.forms import ProfileUpdateForm
+from account.forms import CustomUserUpdateForm, ProfileUpdateForm
 from app.models import Category, Post
 from comments.models import Comment
 from .forms import AddPostForm, CategoryAddForm
@@ -155,8 +155,20 @@ class PostDeleteView(AdminRequiredMixin, DeleteView):
     #         and getattr(self.request.user, 'role', None) == 'admin'
     #     )
 
-class SettingView(AdminRequiredMixin, TemplateView):
+class SettingView(AdminRequiredMixin, UpdateView):
     template_name = 'settings/settings.html'
+    form_class = CustomUserUpdateForm
+    success_url = reverse_lazy('settings')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def form_valid(self, form):
+        messages.success(self.request, "Paramètres modifiés avec succès.")
+        return super().form_valid(form)
+    def form_invalid(self, form):
+        messages.error(self.request, "Veuillez corriger les erreurs.")
+        return super().form_invalid(form)
 
 
 class SettingsUserView(LoginRequiredMixin, UpdateView):
@@ -165,10 +177,10 @@ class SettingsUserView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("user-settings")
 
     def get_object(self, queryset=None):
-        return self.request.user.profile 
+        return self.request.user.profile
 
     def form_valid(self, form):
-        messages.success(self.request, "Pofile modifié avec success")
+        messages.success(self.request, "Profil modifié avec succès")
         return super().form_valid(form)
 
     def form_invalid(self, form):

@@ -90,43 +90,39 @@
             <hr />
 
             <!-- INFORMATIONS -->
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags|default:'info' }} text-center" role="alert">{{ message }}</div>
+              {% endfor %}
+              {{ form.non_fields_errors }}
+
               <div class="row g-4">
                 <!-- Nom -->
                 <div class="col-md-6">
                   <label for="firstName" class="form-label">Nom complet</label>
 
-                  <input type="text" id="firstName" class="form-control" placeholder="Jean Dupont" required />
+                  {{ form.full_name }}
                 </div>
 
-                <!-- Nom -->
-                <!--       <div class="col-md-6">
-                  <label for="lastName" class="form-label">Nom</label>
-
-                   <input type="text" id="lastName" class="form-control" value="Dupont" /> 
-                </div>       -->
-
                 <!-- Email -->
-                <!--    <div class="col-md-6">
+                <div class="col-md-6">
                   <label for="email" class="form-label">Adresse e-mail</label>
 
-                  <input type="email" id="email" class="form-control" placeholder="jean@example.com" required />
-                </div>    -->
+                  <input type="email" id="email" class="form-control" placeholder="{{ user.email }}" disabled />
+                </div>
 
                 <!-- Téléphone -->
                 <div class="col-md-6">
                   <label for="phone" class="form-label">Téléphone</label>
-
-                  <input type="tel" id="phone" class="form-control" placeholder="+228 XX XX XX XX" />
+                  {{ form.phone_number }}
                 </div>
 
                 <!-- Bio -->
                 <div class="col-12">
                   <label for="bio" class="form-label">Biographie</label>
 
-                  <textarea id="bio" class="form-control" rows="4" placeholder="Présentez-vous en quelques mots...">Professionnel dans le domaine du transport et de la logistique.</textarea>
-
+                  {{ form.bio }}
                   <small class="form-help">Une courte présentation visible sur votre profil.</small>
                 </div>
               </div>
